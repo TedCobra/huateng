@@ -51,7 +51,7 @@
 		</div>
 
 		<!-- 存取酒 -->
-		<Dialog :isShow="isAccess" :showConfirmButton="false" :closeOnClickOverly="true">
+		<van-dialog v-model="isAccess" :show-confirm-button="false" :close-on-click-overlay="true">
 			<ul class="flex_row access">
 				<li v-for="item of access" :key="item.routeName">
 					<h3>
@@ -61,16 +61,17 @@
 					<p>{{ item.describe }}</p>
 				</li>
 			</ul>
-		</Dialog>
+		</van-dialog>
 	</div>
 </template>
 
 <script>
-import Dialog from '../components/Dialog.vue';
+// plugins
+import { Dialog } from 'vant';
 
 export default {
 	components: {
-		Dialog
+		[Dialog.Component.name]: Dialog.Component
 	},
 	data() {
 		return {

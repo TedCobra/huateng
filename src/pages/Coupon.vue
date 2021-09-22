@@ -8,21 +8,23 @@
 		</ul>
 
 		<!-- 列表 -->
-		<ul>
-			<li v-for="item of 10" :key="item" class="common_row" @click="$router.push({ name: 'couponDetails' })">
-				<div>
+		<div class="list" ref="listScroll">
+			<ul>
+				<li v-for="item of 10" :key="item" class="common_row" @click="$router.push({ name: 'couponDetails' })">
 					<div>
-						<img src="../assets/images/coupon_white.png" />
+						<div>
+							<img src="../assets/images/coupon_white.png" />
+						</div>
+						<div>
+							<h6>100元现金劵</h6>
+							<p>2021-05-24 14:24:51</p>
+							<p class="details">点击查看详情</p>
+						</div>
 					</div>
-					<div>
-						<h6>100元现金劵</h6>
-						<p>2021-05-24 14:24:51</p>
-						<p class="details">点击查看详情</p>
-					</div>
-				</div>
-				<button class="active" @click.stop="useCoupon()">立即使用</button>
-			</li>
-		</ul>
+					<button class="active" @click.stop="useCoupon()">立即使用</button>
+				</li>
+			</ul>
+		</div>
 
 		<Tabbar />
 	</div>
@@ -30,6 +32,8 @@
 
 <script>
 import Tabbar from '../components/Tabbar.vue';
+// plugins
+import BScroll from '@better-scroll/core';
 export default {
 	components: {
 		Tabbar
@@ -44,9 +48,21 @@ export default {
 			]
 		};
 	},
+	mounted() {
+		this.initBscroll();
+	},
+	beforeDestroy() {
+		this.bs.destroy();
+	},
 	methods: {
 		useCoupon() {
 			console.log('useCoupon');
+		},
+		initBscroll() {
+			this.bs = new BScroll(this.$refs.listScroll, {
+				scrollY: true,
+				click: true
+			});
 		}
 	}
 };
