@@ -1,0 +1,72 @@
+<template>
+    <div class="index">
+        <!-- 轮播 -->
+        <img class="banner" src="../assets/images/bar_cover.png" />
+
+        <!-- main -->
+        <div class="flex_col index_main">
+            <!-- 导航 -->
+            <ul class="flex_row text_center nav">
+                <li
+                    v-for="item of nav"
+                    :key="item.sub"
+                    @click="$router.push({ name: item.routeName })"
+                >
+                    <img :src="require(`../assets/images/${item.sub}.png`)" />
+                    <h6>{{ item.name }}</h6>
+                    <p>{{ item.sub }}</p>
+                </li>
+            </ul>
+            <!-- 点单 -->
+            <div class="order" @click="$router.push({ name: 'order' })">
+                <img src="../assets/images/order_cover.png" />
+                <div class="flex_row">
+                    <div class="flex_row">
+                        <img src="../assets/images/add_white.png" />
+                        <b>点单</b>
+                    </div>
+                </div>
+            </div>
+            <!-- 领券中心 -->
+            <div class="coupon">
+                <div class="flex_row title">
+                    <h4>领劵中心</h4>
+                    <p>
+                        More
+                        <img src="../assets/images/coupon_arrow.png" />
+                    </p>
+                </div>
+                <!-- 列表 -->
+                <ul>
+                    <li v-for="item of 10" :key="item" class="common_row">
+                        <div>
+                            <div>
+                                <img src="../assets/images/coupon_white.png" />
+                            </div>
+                            <div>
+                                <h6>100元现金劵</h6>
+                                <p>2021-05-24 14:24:51</p>
+                            </div>
+                        </div>
+                        <button class="active">立即领取</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+export default {
+    data() {
+        return {
+            nav: [
+                { name: '会员', sub: 'members', routeName: 'member' },
+                { name: '优惠券', sub: 'coupon', routeName: 'coupon' },
+                { name: '预约', sub: 'reservation', routeName: 'reserve' },
+                { name: '存取酒', sub: 'access' },
+            ],
+        };
+    },
+};
+</script>
