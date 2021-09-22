@@ -138,6 +138,12 @@ export default {
 			return selectArray;
 		}
 	},
+	mounted() {
+		this.initBscroll();
+	},
+	beforeDestroy() {
+		this.bs.destroy();
+	},
 	methods: {
 		dateController() {
 			this.isDate = !this.isDate;
@@ -160,12 +166,6 @@ export default {
 				click: true
 			});
 		}
-	},
-	mounted() {
-		this.initBscroll();
-	},
-	beforeDestroy() {
-		this.bs.destroy();
 	}
 };
 </script>

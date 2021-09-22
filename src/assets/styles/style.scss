@@ -256,6 +256,7 @@ body {
     }
     > .van-dialog {
         width: 345px;
+        background-color: transparent;
         > .van-dialog__content {
             > .access {
                 width: 345px;
@@ -312,6 +313,7 @@ body {
 }
 .coupons {
     width: 345px;
+    height: 100%;
     margin: auto;
     padding: 0 0 49px;
     > .condition {
@@ -326,6 +328,17 @@ body {
                 background: #2e66f9;
                 border-radius: 18px;
                 color: #ffffff;
+            }
+        }
+    }
+    > .list {
+        height: calc(100% - 81px);
+        overflow: hidden;
+        > ul {
+            > .common_row {
+                &:last-child {
+                    margin-bottom: 0;
+                }
             }
         }
     }
