@@ -10,7 +10,7 @@
                 <li
                     v-for="item of nav"
                     :key="item.sub"
-                    @click="$router.push({ name: item.routeName })"
+                    @click="jumpPage(item.routeName)"
                 >
                     <img :src="require(`../assets/images/${item.sub}.png`)" />
                     <h6>{{ item.name }}</h6>
@@ -53,11 +53,35 @@
                 </ul>
             </div>
         </div>
+
+        <!-- 存取酒 -->
+        <Dialog
+            :isShow="isAccess"
+            :showConfirmButton="false"
+            :closeOnClickOverly="true"
+        >
+            <ul class="flex_row access">
+                <li v-for="item of access" :key="item.routeName">
+                    <h3>
+                        {{ item.label }}
+                        <img
+                            :src="require(`../assets/images/${item.img}.png`)"
+                        />
+                    </h3>
+                    <p>{{ item.describe }}</p>
+                </li>
+            </ul>
+        </Dialog>
     </div>
 </template>
 
 <script>
+import Dialog from '../components/Dialog.vue';
+
 export default {
+    components: {
+        Dialog,
+    },
     data() {
         return {
             nav: [
@@ -66,7 +90,31 @@ export default {
                 { name: '预约', sub: 'reservation', routeName: 'reserve' },
                 { name: '存取酒', sub: 'access' },
             ],
+            isAccess: false,
+            access: [
+                {
+                    label: '我要寄存',
+                    describe: '描述描述描述描述描述',
+                    img: 'access_deposit',
+                    routeName: 'AccessDeposit',
+                },
+                {
+                    label: '我要取酒',
+                    describe: '描述描述描述描述描述',
+                    img: 'access_withdraw',
+                    routeName: 'AccessWithdraw',
+                },
+            ],
         };
+    },
+    methods: {
+        jumpPage(routeName) {
+            if (routeName) {
+                this.$router.push({ name: routeName });
+                return;
+            }
+            this.isAccess = !this.isAccess;
+        },
     },
 };
 </script>

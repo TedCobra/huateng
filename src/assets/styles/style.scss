@@ -254,6 +254,61 @@ body {
             }
         }
     }
+    > .van-dialog {
+        width: 345px;
+        > .van-dialog__content {
+            > .access {
+                width: 345px;
+                height: 165px;
+                padding: 20px 15px;
+                background: #1f212d;
+                border-radius: 8px;
+                justify-content: space-between;
+                > li {
+                    @extend .flex_col;
+                    justify-content: space-between;
+                    width: 148px;
+                    height: 125px;
+                    padding: 10px;
+                    border-radius: 8px;
+                    color: #ffffff;
+                    &:first-child {
+                        background: linear-gradient(
+                            230deg,
+                            #8facd3 0%,
+                            #8779db 100%
+                        );
+                        > h3 {
+                            > img {
+                                width: 32px;
+                            }
+                        }
+                    }
+                    &:nth-child(2) {
+                        background: linear-gradient(
+                            230deg,
+                            #d39ee5 0%,
+                            #a68cd8 100%
+                        );
+                        > h3 {
+                            > img {
+                                width: 30px;
+                            }
+                        }
+                    }
+                    > h3 {
+                        @extend .flex_row;
+                        justify-content: space-between;
+                        align-items: center;
+                        font-size: 18px;
+                    }
+                    > p {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
 }
 .coupons {
     width: 345px;
@@ -557,14 +612,14 @@ body {
                         background: #191923;
                         border-radius: 13px;
                         font-size: 12px;
-                        color: #FFFFFF;
+                        color: #ffffff;
                     }
                 }
                 &.opening {
                     margin-bottom: 10px;
                     > p {
                         font-size: 12px;
-                        color: #6A6C78;
+                        color: #6a6c78;
                         > img {
                             width: 12px;
                             margin-right: 4px;
@@ -573,7 +628,7 @@ body {
                     > button {
                         width: 68px;
                         height: 26px;
-                        background: #1865FD;
+                        background: #1865fd;
                         border-radius: 13px;
                         font-size: 12px;
                         color: #ffffff;
@@ -583,7 +638,7 @@ body {
                     padding: 11px 0 0;
                     border-top: 1px solid #191923;
                     font-size: 12px;
-                    color: #6A6C78;
+                    color: #6a6c78;
                     > div {
                         align-items: center;
                         > img {
@@ -612,20 +667,20 @@ body {
             padding: 20px 20px 15px;
             > h4 {
                 font-size: 16px;
-                color: #FFFFFF;
+                color: #ffffff;
             }
             > ul {
                 > li {
                     @extend .flex_row;
                     align-items: center;
                     font-size: 10px;
-                    color: #1865FD;
+                    color: #1865fd;
                     > div {
                         @extend .text_center;
                         width: 20px;
                         height: 20px;
                         line-height: 20px;
-                        border: 1px solid #1865FD;
+                        border: 1px solid #1865fd;
                         border-radius: 4px;
                         font-size: 12px;
                         transform: scale(0.5);
@@ -653,15 +708,15 @@ body {
                         height: 100%;
                         margin-left: 15px;
                         font-size: 10px;
-                        color: #6A6C78;
+                        color: #6a6c78;
                         position: relative;
                         &.active {
-                            color: #1865FD;
+                            color: #1865fd;
                             &::after {
                                 content: '';
                                 width: 18px;
                                 height: 2px;
-                                background: #1865FD;
+                                background: #1865fd;
                                 border-radius: 1px;
                                 position: absolute;
                                 left: 9px;
@@ -676,7 +731,7 @@ body {
                 padding: 0 10px;
                 background: #191923;
                 font-size: 10px;
-                color: #1865FD;
+                color: #1865fd;
             }
         }
         > ul {
@@ -691,11 +746,11 @@ body {
                     height: 56px;
                     border: 1px solid #6a6c78;
                     border-radius: 4px;
-                    color: #6A6C78;
+                    color: #6a6c78;
                     position: relative;
                     &.active {
-                        border-color: #FF71AB;
-                        color: #FF71AB;
+                        border-color: #ff71ab;
+                        color: #ff71ab;
                     }
                     > p {
                         &:first-child {
@@ -729,7 +784,11 @@ body {
                                 width: 60px;
                                 height: 50px;
                                 margin-right: 10px;
-                                background: linear-gradient(231deg,#8facd3 0%, #8779db 100%);
+                                background: linear-gradient(
+                                    231deg,
+                                    #8facd3 0%,
+                                    #8779db 100%
+                                );
                                 border-radius: 8px;
                             }
                             &:nth-child(2) {
@@ -740,7 +799,7 @@ body {
                                 > p {
                                     margin-top: 14px;
                                     font-size: 12px;
-                                    color: #FF71AB;
+                                    color: #ff71ab;
                                     > b {
                                         font-size: 18px;
                                     }
@@ -751,10 +810,10 @@ body {
                     > button {
                         width: 72px;
                         height: 30px;
-                        background: #2E66F9;
+                        background: #2e66f9;
                         border-radius: 15px;
                         font-size: 12px;
-                        color: #FFFFFF;
+                        color: #ffffff;
                     }
                 }
             }
