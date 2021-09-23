@@ -14,7 +14,7 @@
 				</li>
 			</ul>
 			<!-- 点单 -->
-			<div class="order" @click="$router.push({ name: 'order' })">
+			<div class="order" @click="jumpPage('order')">
 				<img src="../assets/images/order_cover.png" />
 				<div class="flex_row">
 					<div class="flex_row">

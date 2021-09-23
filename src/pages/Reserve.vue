@@ -55,11 +55,7 @@
 						</li>
 					</ul>
 				</div>
-				<button @click="dateController">
-					更多
-					<br />
-					日期
-				</button>
+				<button @click="dateController">更多<br />日期</button>
 			</div>
 			<!-- 包厢选择 -->
 			<ul class="flex_row text_center box_selection">
