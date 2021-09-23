@@ -10,7 +10,7 @@
 		<!-- 列表 -->
 		<div class="list" ref="listScroll">
 			<ul>
-				<li v-for="item of 10" :key="item" class="common_row" @click="$router.push({ name: 'couponDetails' })">
+				<li v-for="item of 10" :key="item" class="common_row" @click="jumpPage('couponDetails')">
 					<div>
 						<div>
 							<img src="../assets/images/coupon_white.png" />
@@ -88,6 +88,9 @@ export default {
 		receive() {
 			if (this.verifyPhone(this.phoneNumber)) return;
 			this.useCoupon();
+		},
+		jumpPage(routeName) {
+			this.$router.push({ name: routeName });
 		},
 		initBscroll() {
 			this.bs = new BScroll(this.$refs.listScroll, {

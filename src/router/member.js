@@ -52,16 +52,16 @@ const memberRoutes = [
 			index: 3
 		},
 		component: () => import('../pages/member/Card.vue'),
-		redirect: { name: 'MemberCardBuild' },
+		redirect: { name: 'MemberApplicationCard' },
 		children: [
 			{
-				path: 'buildCard',
-				name: 'MemberCardBuild',
+				path: 'applicationCard',
+				name: 'MemberApplicationCard',
 				meta: {
 					title: '建卡绑卡', // 申请会员卡
 					index: 4
 				},
-				component: () => import('../pages/member/card/BuildCard.vue'),
+				component: () => import('../pages/member/card/ApplicationCard.vue'),
 				default: true
 			},
 			{
@@ -74,6 +74,24 @@ const memberRoutes = [
 				component: () => import('../pages/member/card/TiedCard.vue')
 			}
 		]
+	},
+	{
+		path: '/member/card/buildCard',
+		name: 'memberBuildCard',
+		meta: {
+			title: '会员建卡',
+			index: 5
+		},
+		component: () => import('../pages/member/card/BuildCard.vue')
+	},
+	{
+		path: '/member/bill',
+		name: 'memberBill',
+		meta: {
+			title: '账单记录',
+			index: 3
+		},
+		component: () => import('../pages/member/Bill.vue')
 	}
 ];
 
