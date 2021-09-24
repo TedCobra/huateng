@@ -46,7 +46,7 @@
 			<!-- 日期选择 -->
 			<div class="flex_row date_selection">
 				<div ref="dateScroll">
-					<ul>
+					<ul ref="dateContent">
 						<li
 							v-for="item of selectArray"
 							:key="item.timeStamp"
@@ -165,7 +165,16 @@ export default {
 		getSelectDate(date) {
 			// 时间归yyyy-mm-dd 00:00:00
 			date = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0);
-			this.changeSelectDate(date.getTime());
+			let timeStamp = date.getTime();
+			let width = this.$refs.dateContent.offsetWidth / this.selectArray.length;
+			this.changeSelectDate(timeStamp);
+			// 滚动到指定位置
+			for (let i = 0; i < this.selectArray.length; i++) {
+				if (this.selectArray[i].timeStamp === timeStamp) {
+					this.bs.scrollTo(i * width, 0, 0);
+				}
+			}
+			// 关闭弹出层
 			this.dateController();
 		},
 		jumpPage(routeName) {
