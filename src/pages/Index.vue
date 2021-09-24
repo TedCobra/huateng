@@ -14,7 +14,7 @@
 				</li>
 			</ul>
 			<!-- 点单 -->
-			<div class="order" @click="$router.push({ name: 'order' })">
+			<div class="order" @click="jumpPage('order')">
 				<img src="../assets/images/order_cover.png" />
 				<div class="flex_row">
 					<div class="flex_row">
@@ -87,13 +87,13 @@ export default {
 					label: '我要寄存',
 					describe: '描述描述描述描述描述',
 					img: 'access_deposit',
-					routeName: 'AccessDeposit'
+					routeName: 'accessDeposit'
 				},
 				{
 					label: '我要取酒',
 					describe: '描述描述描述描述描述',
 					img: 'access_withdraw',
-					routeName: 'AccessWithdraw'
+					routeName: 'accessWithdraw'
 				}
 			]
 		};
