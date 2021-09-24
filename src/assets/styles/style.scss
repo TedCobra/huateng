@@ -1416,3 +1416,50 @@ body {
 		}
 	}
 }
+.welfare {
+	@extend .flex_col;
+	align-items: center;
+	padding: 20px 0 0;
+	> h1 {
+		font-size: 34px;
+		background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#e58e3a), to(#f5d1b0));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+	> h2 {
+		margin-top: 4px;
+		font-size: 26px;
+		background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#FFDAA7), to(#FDF2D6));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+	> div {
+		width: 335px;
+		padding: 25px 20px;
+		margin-top: 30px;
+		background: linear-gradient(127deg, #f8daab, #fcebd1 100%, #f5cb92 100%);
+		border-radius: 8px;
+		> h2 {
+			font-size: 20px;
+			color: #7f521a;
+		}
+		> p {
+			line-height: 28px;
+			font-size: 14px;
+			color: #7f521a;
+			&:nth-child(2) {
+				margin-top: 15px;
+			}
+		}
+	}
+	> button {
+		width: 285px;
+		height: 40px;
+		margin-top: 40px;
+		background: #ffe5b5;
+		border-radius: 20px;
+		font-size: 18px;
+		font-weight: bold;
+		color: #7f521a;
+	}
+}
