@@ -70,7 +70,7 @@ export default {
 				{ name: '返利', amount: 0 }
 			],
 			service: [
-				{ name: '分享领工资', icon: 'wage', routeName: 'memberWage' },
+				{ name: '分享领福利', icon: 'welfare', routeName: 'memberWelfare' },
 				{
 					name: '会员充值',
 					icon: 'recharge',

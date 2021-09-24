@@ -7,6 +7,10 @@
 				<h4>标题标题标题标题</h4>
 				<div class="text_center">621.5km</div>
 			</div>
+			<div class="flex_row score">
+				<Rate v-model="score" allow-half :color="'#FF71AB'" :void-icon="'star'" :void-color="'#6A6C78'" />
+				{{ score }}分
+			</div>
 			<div class="flex_row opening">
 				<p>
 					<img src="../assets/images/time_grey.png" />
@@ -90,6 +94,7 @@
 			:color="'#2E66F9'"
 			:min-date="minDate"
 			:max-date="maxDate"
+			:show-mark="false"
 			@confirm="getSelectDate"
 		/>
 	</div>
@@ -98,15 +103,18 @@
 <script>
 import Tabbar from '../components/Tabbar.vue';
 // plugins
-import { Calendar } from 'vant';
+import { Rate, Calendar } from 'vant';
 import BScroll from '@better-scroll/core';
 export default {
 	components: {
 		Tabbar,
+		Rate,
 		Calendar
 	},
 	data() {
 		return {
+			// 评分
+			score: 3.7,
 			// 日期选择
 			isDate: false,
 			selectDate: '',

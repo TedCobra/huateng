@@ -52,8 +52,8 @@ import Tabbar from '../components/Tabbar.vue';
 // util
 import { limitNumber, verifyPhone } from '../utils/util.js';
 // plugins
-import BScroll from '@better-scroll/core';
 import { Dialog } from 'vant';
+import BScroll from '@better-scroll/core';
 
 export default {
 	components: {

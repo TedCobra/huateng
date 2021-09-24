@@ -9,6 +9,15 @@ const memberRoutes = [
 		component: () => import('../pages/Member.vue')
 	},
 	{
+		path: '/member/welfare',
+		name: 'memberWelfare',
+		meta: {
+			title: '分享领福利',
+			index: 3
+		},
+		component: () => import('../pages/member/Welfare.vue')
+	},
+	{
 		path: '/member/recharge',
 		name: 'memberRecharge',
 		meta: {

@@ -20,11 +20,15 @@ export default {
 	watch: {
 		// 解决ios scroll-view滚动问题
 		'$route.name'(routeName) {
-			if (routeName === 'coupon') {
-				this.fixedHeight = `${document.documentElement.clientHeight || document.body.clientHeight}px`;
-				return;
+			switch (routeName) {
+				case 'coupon':
+				case 'memberReward':
+					this.fixedHeight = `${document.documentElement.clientHeight || document.body.clientHeight}px`;
+					break;
+				default:
+					this.fixedHeight = '100%';
+					break;
 			}
-			this.fixedHeight = '100%';
 		}
 	}
 };
