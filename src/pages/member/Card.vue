@@ -21,7 +21,7 @@ export default {
 	data() {
 		return {
 			navigate: [
-				{ label: '申请会员卡', routeName: 'MemberCardBuild' },
+				{ label: '申请会员卡', routeName: 'MemberApplicationCard' },
 				{ label: '绑定实体卡', routeName: 'MemberCardTied' }
 			]
 		};

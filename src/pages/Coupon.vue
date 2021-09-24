@@ -10,7 +10,7 @@
 		<!-- 列表 -->
 		<div class="list" ref="listScroll">
 			<ul>
-				<li v-for="item of 10" :key="item" class="common_row" @click="$router.push({ name: 'couponDetails' })">
+				<li v-for="item of 10" :key="item" class="common_row" @click="jumpPage('couponDetails')">
 					<div>
 						<div>
 							<img src="../assets/images/coupon_white.png" />
@@ -52,8 +52,8 @@ import Tabbar from '../components/Tabbar.vue';
 // util
 import { limitNumber, verifyPhone } from '../utils/util.js';
 // plugins
-import BScroll from '@better-scroll/core';
 import { Dialog } from 'vant';
+import BScroll from '@better-scroll/core';
 
 export default {
 	components: {
@@ -88,6 +88,9 @@ export default {
 		receive() {
 			if (this.verifyPhone(this.phoneNumber)) return;
 			this.useCoupon();
+		},
+		jumpPage(routeName) {
+			this.$router.push({ name: routeName });
 		},
 		initBscroll() {
 			this.bs = new BScroll(this.$refs.listScroll, {

@@ -1,6 +1,6 @@
 <template>
-	<div class="tied_card">
-		<div>
+	<div class="tied_card small">
+		<div class="common_input">
 			<img src="../../../assets/images/phone_grey.png" />
 			<input
 				type="text"

@@ -25,7 +25,6 @@ export default {
 				this.fixedHeight = `${document.documentElement.clientHeight || document.body.clientHeight}px`;
 				return;
 			}
-			this.fixedHeight = '100%';
 		}
 	}
 };
