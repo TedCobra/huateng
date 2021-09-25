@@ -101,6 +101,49 @@ select {
 		border-radius: 16px;
 	}
 }
+.coupon_list {
+	> .van-dialog {
+		width: 345px;
+		background-color: transparent;
+		> .van-dialog__content {
+			> .bind_phone {
+				width: 345px;
+				height: 274px;
+				padding: 25px 45px;
+				background: #272935;
+				border-radius: 16px;
+				color: #ffffff;
+				> h3 {
+					@extend .text_center;
+					font-size: 18px;
+				}
+				> p {
+					margin: 15px auto 25px;
+					font-size: 12px;
+				}
+				> input {
+					width: 100%;
+					height: 48px;
+					padding: 0 12px;
+					background: #1f212d;
+					border-radius: 8px;
+					font-size: 14px;
+					color: #ffffff;
+					&::placeholder {
+						color: #6a6c78;
+					}
+				}
+				> button {
+					width: 100%;
+					height: 48px;
+					margin-top: 25px;
+					background: #2e66f9;
+					border-radius: 8px;
+				}
+			}
+		}
+	}
+}
 .common_input {
 	width: 100%;
 	height: 44px;
@@ -364,11 +407,15 @@ body {
 		}
 	}
 }
-.coupons {
+.coupons,
+.member_coupons {
 	width: 345px;
-	height: calc(100% - 15px);
 	margin: auto;
 	padding: 0 0 49px;
+}
+.member_coupons {
+	height: calc(100% - 15px);
+	padding: 0 0 0;
 	> .condition {
 		margin: 15px 0;
 		> li {
@@ -384,57 +431,29 @@ body {
 			}
 		}
 	}
-	> .list {
-		height: calc(100% - 69px);
-		overflow: hidden;
-		> ul {
-			> .common_row {
-				&:first-child {
-					margin-top: 0;
-				}
-				&:last-child {
-					margin-bottom: 0;
+	> .coupon_list {
+		height: 100%;
+		> .list {
+			height: calc(100% - 66px);
+			overflow: hidden;
+			> ul {
+				> .common_row {
+					&:first-child {
+						margin-top: 0px;
+					}
 				}
 			}
 		}
 	}
-	> .van-dialog {
-		width: 345px;
-		background-color: transparent;
-		> .van-dialog__content {
-			> .bind_phone {
-				width: 345px;
-				height: 274px;
-				padding: 25px 45px;
-				background: #272935;
-				border-radius: 16px;
-				color: #ffffff;
-				> h3 {
-					@extend .text_center;
-					font-size: 18px;
-				}
-				> p {
-					margin: 15px auto 25px;
-					font-size: 12px;
-				}
-				> input {
-					width: 100%;
-					height: 48px;
-					padding: 0 12px;
-					background: #1f212d;
-					border-radius: 8px;
-					font-size: 14px;
-					color: #ffffff;
-					&::placeholder {
-						color: #6a6c78;
+}
+.coupons {
+	> .coupon_list {
+		> .list {
+			> ul {
+				> .common_row {
+					&:first-child {
+						margin-top: 15px;
 					}
-				}
-				> button {
-					width: 100%;
-					height: 48px;
-					margin-top: 25px;
-					background: #2e66f9;
-					border-radius: 8px;
 				}
 			}
 		}
@@ -851,7 +870,7 @@ body {
 					content: '';
 					width: 31px;
 					height: 28px;
-					background: linear-gradient(-90deg, #191923, rgba(106, 108, 120, 0) 100%);
+					background: linear-gradient(-90deg, rgba(25, 25, 35, 1), rgba(106, 108, 120, 0) 100%);
 					pointer-events: none;
 					position: absolute;
 					top: 11px;
@@ -1354,15 +1373,13 @@ body {
 		}
 	}
 	> .list {
-		height: calc(100% - 258px);
+		height: calc(100% - 248px);
 		overflow: hidden;
 		> ul {
+			padding: 20px 0;
 			> li {
 				padding: 0 10px;
 				margin-bottom: 20px;
-				&:first-child {
-					margin-top: 20px;
-				}
 				&.active {
 					> div {
 						&:first-child {
@@ -1429,7 +1446,7 @@ body {
 	> h2 {
 		margin-top: 4px;
 		font-size: 26px;
-		background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#FFDAA7), to(#FDF2D6));
+		background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#ffdaa7), to(#fdf2d6));
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 	}

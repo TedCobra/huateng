@@ -36,6 +36,15 @@ const memberRoutes = [
 		component: () => import('../pages/member/Reward.vue')
 	},
 	{
+		path: '/member/coupon',
+		name: 'memberCoupon',
+		meta: {
+			title: '我的优惠券',
+			index: 3
+		},
+		component: () => import('../pages/member/Coupon.vue')
+	},
+	{
 		path: '/member/material',
 		name: 'memberMaterial',
 		meta: {

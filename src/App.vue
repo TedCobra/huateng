@@ -21,8 +21,8 @@ export default {
 		// 解决ios scroll-view滚动问题
 		'$route.name'(routeName) {
 			switch (routeName) {
-				case 'coupon':
 				case 'memberReward':
+				case 'memberCoupon':
 					this.fixedHeight = `${document.documentElement.clientHeight || document.body.clientHeight}px`;
 					break;
 				default:

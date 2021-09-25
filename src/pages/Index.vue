@@ -33,20 +33,7 @@
 					</p>
 				</div>
 				<!-- 列表 -->
-				<ul>
-					<li v-for="item of 10" :key="item" class="common_row">
-						<div>
-							<div>
-								<img src="../assets/images/coupon_white.png" />
-							</div>
-							<div>
-								<h6>100元现金劵</h6>
-								<p>2021-05-24 14:24:51</p>
-							</div>
-						</div>
-						<button class="active">立即领取</button>
-					</li>
-				</ul>
+				<ListForCoupon :isScroll="false" :isNeedDetails="false" :dataArray="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" />
 			</div>
 		</div>
 
@@ -66,11 +53,13 @@
 </template>
 
 <script>
+import ListForCoupon from '../components/ListForCoupon.vue';
 // plugins
 import { Dialog } from 'vant';
 
 export default {
 	components: {
+		ListForCoupon,
 		[Dialog.Component.name]: Dialog.Component
 	},
 	data() {

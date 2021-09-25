@@ -20,9 +20,9 @@
 			<li>建卡日期</li>
 		</ul>
 		<!-- list -->
-		<div class="list">
+		<div ref="listScroll" class="list">
 			<ul>
-				<li v-for="item of 10" :key="item" :class="{ active: item === selectBox }" @click="selectBox = item">
+				<li v-for="item of 10" :key="item" :class="{ active: item === selectBox }" @click="fold(item)">
 					<div>
 						<p>陈选择</p>
 						<p>推荐返利</p>
@@ -46,6 +46,9 @@
 </template>
 
 <script>
+// plugins
+import BScroll from '@better-scroll/core';
+
 export default {
 	data() {
 		return {
@@ -57,6 +60,24 @@ export default {
 			],
 			selectBox: null
 		};
+	},
+	mounted() {
+		this.initBScroll();
+	},
+	beforeDestroy() {
+		this.bs.destroy();
+	},
+	methods: {
+		fold(index) {
+			this.selectBox = index;
+			this.bs.refresh();
+		},
+		initBScroll() {
+			this.bs = new BScroll(this.$refs.listScroll, {
+				scrollY: true,
+				click: true
+			});
+		}
 	}
 };
 </script>

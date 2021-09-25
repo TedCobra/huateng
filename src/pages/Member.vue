@@ -86,7 +86,7 @@ export default {
 				{
 					name: '我的优惠券',
 					icon: 'discounts',
-					routeName: 'memberDiscounts'
+					routeName: 'memberCoupon'
 				}
 			],
 			feature: [
