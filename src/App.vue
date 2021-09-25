@@ -14,20 +14,16 @@ export default {
 	},
 	data() {
 		return {
-			fixedHeight: '100%'
+			fixedHeight: '100%',
+			routerNameConfig: ['coupon', 'accessDeposit', 'accessWithdraw']
 		};
 	},
 	watch: {
 		// 解决ios scroll-view滚动问题
 		'$route.name'(routeName) {
-			switch (routeName) {
-				case 'memberReward':
-				case 'memberCoupon':
-					this.fixedHeight = `${document.documentElement.clientHeight || document.body.clientHeight}px`;
-					break;
-				default:
-					this.fixedHeight = '100%';
-					break;
+			if (this.routerNameConfig.indexOf(routeName) > -1) {
+				this.fixedHeight = `${document.documentElement.clientHeight || document.body.clientHeight}px`;
+				return;
 			}
 		}
 	}

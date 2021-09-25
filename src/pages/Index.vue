@@ -40,7 +40,7 @@
 		<!-- 存取酒 -->
 		<van-dialog v-model="isAccess" :show-confirm-button="false" :close-on-click-overlay="true">
 			<ul class="flex_row access">
-				<li v-for="item of access" :key="item.routeName">
+				<li v-for="item of access" :key="item.routeName" @click="$router.push({ name: item.routeName })">
 					<h3>
 						{{ item.label }}
 						<img :src="require(`../assets/images/${item.img}.png`)" />
@@ -76,13 +76,13 @@ export default {
 					label: '我要寄存',
 					describe: '描述描述描述描述描述',
 					img: 'access_deposit',
-					routeName: 'AccessDeposit'
+					routeName: 'accessDeposit'
 				},
 				{
 					label: '我要取酒',
 					describe: '描述描述描述描述描述',
 					img: 'access_withdraw',
-					routeName: 'AccessWithdraw'
+					routeName: 'accessWithdraw'
 				}
 			]
 		};
