@@ -1,6 +1,6 @@
 <template>
 	<div class="order-coupon-container">
-		<van-popup v-model="show" position="bottom">
+		<van-popup v-model="show" position="bottom" :close-on-click-overlay="false" @click-overlay="close">
 			<ListForCoupon :isScroll="true" :dataArray="[1, 2, 3, 4, 5]" />
 		</van-popup>
 	</div>
