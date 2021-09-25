@@ -15,7 +15,7 @@ export default {
 	data() {
 		return {
 			fixedHeight: '100%',
-			routerNameConfig: ['coupon', 'accessDeposit', 'accessWithdraw']
+			routerNameConfig: ['coupon', 'accessDeposit', 'accessWithdraw', 'memberCoupon']
 		};
 	},
 	watch: {
