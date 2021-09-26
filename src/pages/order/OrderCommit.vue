@@ -54,7 +54,7 @@
 		<div class="flex_row order-settle-button">
 			<div class="flex_row settle-detail">
 				<div class="cart">
-					<img src="../../assets/images/order_bill.png" alt="" @click="isShowChoosed = !isShowChoosed" />
+					<img src="../../assets/images/order_bill.png" alt="" />
 					<div class="num">
 						<span>{{ showData.num }}</span>
 					</div>
@@ -68,26 +68,25 @@
 		</div>
 		<OrderPay :show="isShowPay" :showData="payData" @payEvent="closePoup"></OrderPay>
 		<OrderCoupon :show="isShowCoupon" :showData="payData" @couponEvent="couponEvent"></OrderCoupon>
-		<OrderChoosed :show="isShowChoosed" :showData="payData" @choosedEvent="choosedEvent"></OrderChoosed>
 	</div>
 </template>
 <script>
 import BScroll from '@better-scroll/core';
 import OrderPay from './OrderPay.vue';
 import OrderCoupon from './OrderCoupon.vue';
-import OrderChoosed from './OrderChoosed.vue';
+// import OrderChoosed from './OrderChoosed.vue';
 export default {
 	components: {
 		OrderPay,
 		OrderCoupon,
-		OrderChoosed
+		// OrderChoosed
 	},
 	data() {
 		return {
 			showMore: false,
 			isShowPay: false,
 			isShowCoupon: false,
-			isShowChoosed: false,
+			// isShowChoosed: false,
 			showData: {
 				price: 7788,
 				num: 6

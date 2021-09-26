@@ -544,6 +544,9 @@
 
 //选择优惠券
 .order-coupon-container {
+	.van-overlay {
+		background: rgba(0, 0, 0, 1);
+	}
 	.van-popup {
 		background: rgba(39, 41, 53, 1);
 		padding: 0 14px 25px 14px;
@@ -569,10 +572,85 @@
 
 // 已选择列表
 .order-choosed-container {
+	.van-overlay {
+		background: rgba(0, 0, 0, 1);
+	}
+	.van-popup {
+		background: rgba(39, 41, 53, 1);
+		border-radius: 8px 8px 0 0;
+		padding: 30px 15px 15px 15px;
+		.choose-list {
+			height: auto;
+			margin-bottom: 80px;
+			ul {
+				li {
+					height: 60px;
+					width: 100%;
+					justify-content: space-between;
+					margin-bottom: 15px;
+					.choose-pro {
+
+						img {
+							width: 60px;
+							height: 60px;
+							margin-right: 10px;
+						}
+						.pro-detail {
+							text-align: left;
+							justify-content: flex-start;
+							p:nth-child(1) {
+								font-size: 14px;
+								font-weight: 500;
+								color: #ffffff;
+								flex: 0 0 auto;
+							}
+							p:nth-child(2) {
+								flex: 1 0 auto;
+								margin: 4px 0 5px 0;
+								font-size: 12px;
+								font-weight: lighter;
+								color: #ffffff;
+							}
+							p:nth-child(3) {
+								flex: 0 0 auto;
+								font-size: 14px;
+								font-weight: 500;
+								color: #e52117;
+								span {
+									font-size: 10px;
+									font-weight: 700;
+								}
+							}
+						}
+					}
+					.choose-opt {
+						justify-content: flex-end;
+						div {
+							align-items: center;
+							img {
+								width: 20px;
+								height: 20px;
+								align-self: flex-end;
+							}
+							span {
+								margin: 0 7px;
+								font-size: 12px;
+								font-weight: 500;
+								color: #ffffff;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }
 
 // 套餐弹窗
 .order-package-container {
+	.van-overlay {
+		background: rgba(0, 0, 0, 0.8);
+	}
 	.van-popup {
 		background: rgba(39, 41, 53, 1);
 		padding: 30px;
@@ -722,6 +800,9 @@
 
 // 选择会员卡
 .order-cards-container {
+	.van-overlay {
+		background: rgba(0, 0, 0, 1);
+	}
 	.van-popup {
 		width: 375px;
 		padding: 20px 15px;
