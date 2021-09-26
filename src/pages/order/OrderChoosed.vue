@@ -1,4 +1,6 @@
 <template>
+	<!-- 已选商品页 -->
+
 	<div class="order-choosed-container">
 		<van-popup v-model="show" position="bottom" :close-on-click-overlay="false" @click-overlay="close" />
 	</div>

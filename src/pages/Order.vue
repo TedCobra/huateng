@@ -3,12 +3,12 @@
 		<div class="flex_col order-top">
 			<div class="flex_row shop-name">
 				<p>店名店名店名店名店名店名</p>
-				<img src="../assets/images/order_vector.png" alt="" />
+				<img src="../assets/images/order_vector.png" alt="" @click="openCards" />
 			</div>
 			<p class="shop-notice">公告：欢迎光临XXXX，感谢新老客户长久以来对本店支持对本店支持对本店支持</p>
-			<div class="flex_row table-num" @click="$router.push({ name: 'orderDetail' })">
+			<div class="flex_row table-num" >
 				<button>台号：128</button>
-				<button>查看账单</button>
+				<button @click="$router.push({ name: 'orderDetail' })">查看账单</button>
 			</div>
 		</div>
 		<div class="flex_row order-search">
@@ -27,7 +27,7 @@
 			</div>
 			<div class="hot-items">
 				<ul>
-					<li class="flex_row item-content" v-for="item of 10" :key="item">
+					<li class="flex_row item-content" v-for="item of 10" :key="item" @click="choosePackage">
 						<img class="item-img" src="" alt="" />
 						<div class="flex_col item-detail">
 							<p>产品名称产品名称产品</p>
@@ -66,16 +66,21 @@
 			<button @click="$router.push({ name: 'orderCommit' })">去结算</button>
 		</div>
 		<OrderChoosed :show="isShowChoosed" @choosedEvent="choosedEvent"></OrderChoosed>
+		<OrderPackage :show="isShowPackage" @packageEvent="packageEvent"></OrderPackage>
+		<OrderCards :show="ishowCards" @cardsEvent="cardsEvent"></OrderCards>
 	</div>
 </template>
 <script>
 import OrderChoosed from './order/OrderChoosed.vue';
-
+import OrderPackage from './order/OrderPackage.vue';
+import OrderCards from './order/OrderCards.vue';
 export default {
-	components: { OrderChoosed },
+	components: { OrderChoosed, OrderPackage, OrderCards },
 	data() {
 		return {
 			isShowChoosed: false,
+			isShowPackage: false,
+			ishowCards: false,
 			showData: {
 				price: 899,
 				num: 9
@@ -85,6 +90,19 @@ export default {
 	methods: {
 		choosedEvent() {
 			this.isShowChoosed = false;
+		},
+		packageEvent() {
+			this.isShowPackage = false;
+		},
+		// 选择套餐
+		choosePackage() {
+			this.isShowPackage = true;
+		},
+		openCards() {
+			this.ishowCards = true;
+		},
+		cardsEvent() {
+			this.ishowCards = false;
 		}
 	}
 };

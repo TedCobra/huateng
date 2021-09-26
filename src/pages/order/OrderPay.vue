@@ -1,4 +1,6 @@
 <template>
+	<!-- 订单支付 -->
+
 	<div class="order-pay-container">
 		<van-popup v-model="show" :close-on-click-overlay="false">
 			<div class="pay-content">

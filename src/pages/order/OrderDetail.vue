@@ -1,4 +1,6 @@
 <template>
+	<!-- 订单详情 -->
+
 	<div class="order-commit-container order-detail-container">
 		<div class="flex_col commit-table">
 			<p>128号桌(九五至尊)</p>

@@ -545,12 +545,278 @@
 //选择优惠券
 .order-coupon-container {
 	.van-popup {
-		background: rgba(39,41,53,1);
-		padding: 15px;
+		background: rgba(39, 41, 53, 1);
+		padding: 0 14px 25px 14px;
+		.coupon-title {
+			padding: 20px 0 20px 0;
+			position: relative;
+			p {
+				font-size: 16px;
+				font-weight: 500;
+				text-align: center;
+				color: #ffffff;
+			}
+			img {
+				width: 13px;
+				height: 13px;
+				position: absolute;
+				right: 10px;
+				top: 25px;
+			}
+		}
 	}
 }
 
 // 已选择列表
 .order-choosed-container {
-	
+}
+
+// 套餐弹窗
+.order-package-container {
+	.van-popup {
+		background: rgba(39, 41, 53, 1);
+		padding: 30px;
+		.close-img {
+			width: 13px;
+			height: 13px;
+			position: absolute;
+			right: 30px;
+			top: 30px;
+		}
+		.package-product {
+			margin-bottom: 30px;
+			img {
+				width: 60px;
+				height: 60px;
+				background: #c4c4c4;
+				border-radius: 4px;
+			}
+			.product-detail {
+				margin-left: 10px;
+				p:nth-child(1) {
+					font-size: 14px;
+					font-weight: 700;
+					text-align: left;
+					color: #ffffff;
+					flex: 0 0 auto;
+				}
+				p:nth-child(2) {
+					font-size: 12px;
+					font-weight: lighter;
+					margin: 4px 0 6px 0;
+					color: #6a6c78;
+					flex: 1 0 auto;
+				}
+				p:nth-child(3) {
+					font-size: 14px;
+					font-weight: 700;
+					color: #ff71ab;
+					flex: 0 0 auto;
+					text-align: left;
+				}
+			}
+		}
+		.package-choose {
+			ul {
+				li {
+					.package-title {
+						justify-content: flex-start;
+						align-items: center;
+						margin-bottom: 15px;
+						span:nth-child(1) {
+							width: 3px;
+							height: 16px;
+							background: #2e66f9;
+							margin-right: 6px;
+						}
+						span:nth-child(2) {
+							font-size: 16px;
+							font-weight: 500;
+							color: #ffffff;
+						}
+					}
+					.package-type {
+						flex-wrap: wrap;
+						justify-content: space-between;
+						button {
+							width: 152px;
+							height: 34px;
+							background: #191923;
+							border: 1px solid #6a6c78;
+							border-radius: 4px;
+							margin-bottom: 10px;
+							font-size: 12px;
+							font-weight: 500;
+							text-align: center;
+							color: #6a6c78;
+						}
+						button.selectd {
+							background: #191923;
+							border: 1px solid #2e66f9;
+							color: #2e66f9;
+							// background-image:url("../../assets/images/select_blue.png") ;
+						}
+					}
+				}
+			}
+		}
+		.package-add {
+			width: 315px;
+			background: #191a1f;
+			border-radius: 8px;
+			padding: 20px 15px;
+			ul {
+				li {
+					justify-content: space-between;
+					align-items: center;
+					margin-bottom: 20px;
+					.add-name {
+						font-size: 12px;
+						font-weight: lighter;
+						color: #6a6c78;
+					}
+					.add-num {
+						align-items: center;
+						p {
+							font-size: 12px;
+							font-weight: lighter;
+							color: #6a6c78;
+							margin-right: 8px;
+						}
+						div {
+							align-items: center;
+							img {
+								width: 20px;
+								height: 20px;
+							}
+							span {
+								margin: 0 4px;
+								font-size: 12px;
+								font-weight: 500;
+								color: #ffffff;
+							}
+						}
+					}
+				}
+				li:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+		.package-confirm {
+			width: 305px;
+			height: 40px;
+			background: #293c70;
+			border-radius: 20px;
+			margin: 30px auto 0px auto;
+			font-size: 16px;
+			// font-weight: 500;
+			text-align: center;
+			color: #ffffff;
+		}
+		button.confirm {
+			background: #2e66f9;
+		}
+	}
+}
+
+// 选择会员卡
+.order-cards-container {
+	.van-popup {
+		width: 375px;
+		padding: 20px 15px;
+		background: #272935;
+		.cards-title {
+			position: relative;
+			margin-bottom: 20px;
+			p {
+				font-size: 16px;
+				font-weight: 500;
+				text-align: center;
+				color: #ffffff;
+			}
+			img {
+				width: 13px;
+				height: 13px;
+				position: absolute;
+				right: 10px;
+				top: 6px;
+			}
+		}
+		ul {
+			align-items: center;
+			li {
+				width: 345px;
+				height: 180px;
+				position: relative;
+				margin-bottom: 20px;
+				.cards-bg {
+					width: 100%;
+					height: 100%;
+					position: absolute;
+					left: 0;
+					top: 0;
+					z-index: 0;
+				}
+				.cards-content {
+					position: relative;
+					width: 100%;
+					height: 100%;
+					padding: 20px 35px 20px 20px;
+					.cards-common {
+						width: 100%;
+						height: 100%;
+						justify-content: space-between;
+						.qr-code {
+							justify-content: flex-end;
+							img {
+								width: 40px;
+								height: 40px;
+							}
+						}
+					}
+					.common-info {
+						justify-content: space-between;
+						.cards-name {
+							text-align: left;
+							p:nth-child(1) {
+								font-size: 20px;
+								font-weight: 700;
+								line-height: 28px;
+							}
+							p:nth-child(2) {
+								font-size: 12px;
+								font-weight: 500;
+								letter-spacing: 0px;
+								line-height: 17px;
+							}
+						}
+						.cards-num {
+							p {
+								font-size: 12px;
+								font-weight: 500;
+								line-height: 17px;
+							}
+							p:nth-child(1) {
+								margin-bottom: 8px;
+							}
+						}
+					}
+					.card-silver {
+						p {
+							color: #5e6983;
+						}
+					}
+					.card-gold {
+						p {
+							color: rgba(123, 102, 75, 1);
+						}
+					}
+				}
+			}
+			li:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
 }
