@@ -2,17 +2,10 @@
 	<div class="member">
 		<!-- 会员卡详情 -->
 		<div class="common_box middle club_card">
-			<div>
-				<img src="../assets/images/member_cover.png" />
-				<div>
-					<h4>普通会员卡</h4>
-					<p>members</p>
-					<p>会员:0012147454114</p>
-					<p>有效期至:2050-12-31</p>
-				</div>
-			</div>
+			<MembershipCard :routeName="'memberQRCode'" />
+
 			<ul class="flex_row text_center">
-				<li v-for="(item, index) of memberTotal" :key="index">
+				<li v-for="(item, index) of memberTotal" :key="index" @click="jumpPage(item.routeName)">
 					<p>{{ item.name }}</p>
 					<p>{{ item.amount }}</p>
 				</li>
@@ -20,30 +13,30 @@
 		</div>
 
 		<div class="title">
-			<img src="../assets/images/title_left_icon.png" />
+			<img src="../../assets/images/title_left_icon.png" />
 			常用服务
-			<img src="../assets/images/title_right_icon.png" />
+			<img src="../../assets/images/title_right_icon.png" />
 		</div>
 
 		<div class="common_box middle choice">
 			<ul>
 				<li v-for="item of service" :key="item.routeName" class="bar_3" @click="jumpPage(item.routeName)">
-					<img :src="require(`../assets/images/${item.icon}.png`)" />
+					<img :src="require(`../../assets/images/${item.icon}.png`)" />
 					<p>{{ item.name }}</p>
 				</li>
 			</ul>
 		</div>
 
 		<div class="title">
-			<img src="../assets/images/title_left_icon.png" />
+			<img src="../../assets/images/title_left_icon.png" />
 			其他功能
-			<img src="../assets/images/title_right_icon.png" />
+			<img src="../../assets/images/title_right_icon.png" />
 		</div>
 
 		<div class="common_box middle choice">
 			<ul>
 				<li v-for="item of feature" :key="item.routeName" class="bar_4" @click="jumpPage(item.routeName)">
-					<img :src="require(`../assets/images/${item.icon}.png`)" />
+					<img :src="require(`../../assets/images/${item.icon}.png`)" />
 					<p>{{ item.name }}</p>
 				</li>
 			</ul>
@@ -55,9 +48,11 @@
 </template>
 
 <script>
-import Tabbar from '../components/Tabbar.vue';
+import MembershipCard from '../../components/MembershipCard.vue';
+import Tabbar from '../../components/Tabbar.vue';
 export default {
 	components: {
+		MembershipCard,
 		Tabbar
 	},
 	data() {
@@ -67,7 +62,7 @@ export default {
 				{ name: '积分', amount: 0 },
 				{ name: '本金', amount: 0 },
 				{ name: '赠送', amount: 0 },
-				{ name: '返利', amount: 0 }
+				{ name: '返利', amount: 0, routeName: 'memberRebate' }
 			],
 			service: [
 				{ name: '分享领福利', icon: 'welfare', routeName: 'memberWelfare' },
@@ -103,7 +98,7 @@ export default {
 	},
 	methods: {
 		jumpPage(routeName) {
-			this.$router.push({ name: routeName });
+			if (routeName) this.$router.push({ name: routeName });
 		}
 	}
 };

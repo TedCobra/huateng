@@ -3,18 +3,18 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
-	// devServer: {
-	// 	proxy: {
-	// 		'/api': {
-	// 			target: 'http://masterapi.yogsj.com/',
-	// 			secure: false,
-	// 			changeOrigin: true,
-	// 			pathRewrite: {
-	// 				api: '/'
-	// 			}
-	// 		}
-	// 	}
-	// },
+	devServer: {
+		proxy: {
+			'/api': {
+				target: 'http://139.196.88.14/',
+				secure: false,
+				changeOrigin: true,
+				pathRewrite: {
+					'/api': '/'
+				}
+			}
+		}
+	},
 	productionSourceMap: !isProduction,
 	// publicPath: '',
 	chainWebpack: (config) => {

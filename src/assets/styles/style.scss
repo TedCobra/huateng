@@ -145,6 +145,36 @@ select {
 		}
 	}
 }
+.membership_card {
+	position: relative;
+	> img {
+		width: 100%;
+	}
+	> div {
+		width: 100%;
+		height: 100%;
+		padding: 20px;
+		position: absolute;
+		color: #5e472c;
+		top: 0;
+		left: 0;
+		> h4 {
+			font-size: 20px;
+		}
+		> p {
+			font-size: 12px;
+			&:nth-child(2) {
+				text-transform: uppercase;
+			}
+			&:nth-child(3) {
+				margin-top: 53px;
+			}
+			&:nth-child(4) {
+				margin-top: 8px;
+			}
+		}
+	}
+}
 .common_input {
 	width: 100%;
 	height: 44px;
@@ -476,40 +506,83 @@ body {
 		}
 	}
 }
+.card {
+	> .store {
+		justify-content: space-between;
+		align-items: center;
+		margin: 30px auto 0;
+		padding: 0 15px;
+		> div {
+			@extend .flex_row;
+			align-items: center;
+			font-size: 16px;
+			color: #ffffff;
+			> div {
+				height: 20px;
+				margin-left: 8px;
+				padding: 0 4px;
+				border: 1px solid #2e66f9;
+				border-radius: 10px;
+				font-size: 10px;
+				color: #2e66f9;
+			}
+		}
+		> button {
+			@extend .flex_row;
+			justify-content: center;
+			align-items: center;
+			width: 74px;
+			height: 24px;
+			background: #2e66f9;
+			border-radius: 12px;
+			font-size: 12px;
+			color: #ffffff;
+			> img {
+				width: 12px;
+			}
+		}
+	}
+	> .membership_card {
+		width: 345px;
+		margin: 20px auto 0;
+		border-radius: 8px;
+		overflow: hidden;
+	}
+}
+.card_phone {
+	margin: 20px auto 0;
+	padding: 30px 20px 40px;
+	> div {
+		width: 90px;
+		height: 90px;
+		margin: auto;
+		padding: 6px;
+		border: 1px solid #6a6c78;
+		border-radius: 50%;
+		> img {
+			width: 100%;
+			border-radius: 50%;
+		}
+	}
+	> p {
+		@extend .text_center;
+		margin: 15px auto 80px;
+		font-size: 14px;
+		color: #6a6c78;
+	}
+	> button {
+		width: 100%;
+		height: 40px;
+		background: #2e66f9;
+		border-radius: 20px;
+		font-size: 16px;
+		color: #ffffff;
+	}
+}
 .member {
 	padding: 0 0 64px;
 	> .club_card {
 		margin: 15px auto 0;
-		> div {
-			position: relative;
-			> img {
-				width: 100%;
-			}
-			> div {
-				width: 100%;
-				height: 100%;
-				padding: 20px;
-				position: absolute;
-				color: #5e472c;
-				top: 0;
-				left: 0;
-				> h4 {
-					font-size: 20px;
-				}
-				> p {
-					font-size: 12px;
-					&:nth-child(2) {
-						text-transform: uppercase;
-					}
-					&:nth-child(3) {
-						margin-top: 53px;
-					}
-					&:nth-child(4) {
-						margin-top: 8px;
-					}
-				}
-			}
-		}
 		> ul {
 			padding: 18px 30px;
 			justify-content: space-between;
@@ -977,17 +1050,97 @@ body {
 			}
 		}
 		> .van-calendar__body {
-			> .van-calendar__month {
-				> .van-calendar__days {
-					> .van-calendar__day--disabled {
-						color: #434654;
+			.van-calendar__day--disabled {
+				color: #434654 !important;
+			}
+		}
+	}
+}
+.reserve_order {
+	> .common_box {
+		margin: 15px auto 0;
+		padding: 0 20px;
+		&.details {
+			padding: 20px;
+			> div {
+				justify-content: space-between;
+				align-items: center;
+				font-size: 18px;
+				color: #ffffff;
+			}
+			> p {
+				margin-top: 15px;
+				font-size: 12px;
+				color: #ffffff;
+			}
+		}
+		&.edit_details {
+			> ul {
+				> li {
+					@extend .flex_row;
+					height: 55px;
+					line-height: 55px;
+					&:not(:last-child) {
+						border-bottom: 1px solid #272935;
+					}
+					> label {
+						width: 70px;
+						text-align: justify;
+						font-size: 14px;
+						color: #ffffff;
+					}
+					> input {
+						width: calc(100% - 70px);
+						height: 100%;
+						background: transparent;
+						font-size: 14px;
+						color: #ffffff;
 					}
 				}
 			}
 		}
 	}
+	> .confirm {
+		justify-content: space-between;
+		align-items: center;
+		width: 100%;
+		height: 50px;
+		background: #272935;
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		> p {
+			padding-left: 20px;
+			font-size: 16px;
+			color: #ffffff;
+			> b {
+				font-size: 24px;
+			}
+		}
+		> div {
+			height: 100%;
+			> div {
+				padding: 0 20px;
+				line-height: 50px;
+				font-size: 12px;
+				color: #ffffff;
+				> img {
+					width: 8px;
+					margin-left: 5px;
+					transform: rotate(-180deg);
+				}
+			}
+			> button {
+				width: 108px;
+				height: 100%;
+				background: #266df2;
+				font-size: 14px;
+				color: #ffffff;
+			}
+		}
+	}
 }
-.card {
+.member_card {
 	> .nav {
 		justify-content: center;
 		margin: 20px auto 30px;
@@ -1479,5 +1632,70 @@ body {
 		font-size: 18px;
 		font-weight: bold;
 		color: #7f521a;
+	}
+}
+.q_r_code {
+	@extend .flex_col;
+	@extend .text_center;
+	margin: 20px auto 0;
+	padding: 30px 0;
+	> div {
+		margin: auto;
+		&:first-child {
+			width: 80px;
+			height: 80px;
+			background: #6a6c78;
+			border-radius: 50%;
+		}
+		&:last-child {
+			width: 180px;
+			height: 180px;
+			padding: 20px;
+			background: #191923;
+			border-radius: 8px;
+			> img {
+				width: 100%;
+			}
+		}
+	}
+	> p {
+		margin: 15px auto 30px;
+		&:nth-child(2) {
+			font-size: 14px;
+			color: #6a6c78;
+		}
+		&:nth-child(4) {
+			font-size: 16px;
+			color: #6a6c78;
+		}
+	}
+	> img {
+		margin: auto;
+		&:nth-child(3) {
+			width: 315px;
+		}
+	}
+}
+.rebate {
+	@extend .text_center;
+	margin: 20px auto 0;
+	padding: 40px 0 45px;
+	> div {
+		width: 140px;
+		height: 140px;
+		padding: 10px;
+		margin: 0 auto 30px;
+		background: #ffffff;
+		border-radius: 8px;
+	}
+	> p {
+		font-size: 14px;
+		color: #6a6c78;
+		&:not(:last-child) {
+			margin-bottom: 10px;
+		}
+		> b {
+			color: #ffffff;
+		}
 	}
 }

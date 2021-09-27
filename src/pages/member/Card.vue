@@ -1,5 +1,5 @@
 <template>
-	<div class="card">
+	<div class="member_card">
 		<ul class="flex_row nav">
 			<li
 				v-for="item of navigate"

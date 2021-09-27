@@ -1,7 +1,7 @@
 <template>
 	<div class="coupons">
 		<!-- 列表 -->
-		<ListForCoupon :isScroll="false" :dataArray="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" />
+		<ListForCoupon :isScroll="false" :dataArray="coupon" />
 
 		<!-- footer -->
 		<tabbar />
@@ -12,10 +12,24 @@
 import ListForCoupon from '../components/ListForCoupon.vue';
 import Tabbar from '../components/Tabbar.vue';
 
+// http
+import HttpService from '../utils/http';
+
 export default {
 	components: {
 		ListForCoupon,
 		Tabbar
+	},
+	data() {
+		return {
+			coupon: []
+		};
+	},
+	created() {
+		// 商家ID，活动ID
+		HttpService.Coupon(5129, 31).then((res) => {
+			this.coupon = res;
+		});
 	}
 };
 </script>

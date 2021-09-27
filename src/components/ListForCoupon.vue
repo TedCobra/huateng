@@ -3,18 +3,18 @@
 		<!-- 列表 -->
 		<div class="list" ref="listScroll">
 			<ul>
-				<li v-for="item of dataArray" :key="item" class="common_row" @click="jumpPage('couponDetails')">
+				<li v-for="item of dataArray" :key="item.couponid" class="common_row" @click="checkTheDetails(item.title, item.note)">
 					<div>
 						<div>
-							<img src="../assets/images/coupon_white.png" />
+							<img :src="item.picture" />
 						</div>
 						<div>
-							<h6>100元现金劵</h6>
-							<p>2021-05-24 14:24:51</p>
+							<h6>{{ item.title }}</h6>
+							<p>{{ item.createdatetime }}</p>
 							<p v-show="isNeedDetails" class="details">点击查看详情</p>
 						</div>
 					</div>
-					<button class="active" @click.stop="useCoupon()">立即使用</button>
+					<button class="active" @click.stop="useCoupon()">立即领取</button>
 				</li>
 			</ul>
 		</div>
@@ -86,8 +86,14 @@ export default {
 			if (this.verifyPhone(this.phoneNumber)) return;
 			this.useCoupon();
 		},
-		jumpPage(routeName) {
-			this.$router.push({ name: routeName });
+		checkTheDetails(title, details) {
+			this.$router.push({
+				name: 'couponDetails',
+				params: {
+					title: title,
+					details: details
+				}
+			});
 		}
 	}
 };

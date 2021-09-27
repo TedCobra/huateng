@@ -4,7 +4,7 @@
 
 		<div class="common_box middle bar_details">
 			<div class="flex_row title">
-				<h4>标题标题标题标题</h4>
+				<h4>{{ MerchantDetails.company_name }}</h4>
 				<div class="text_center">621.5km</div>
 			</div>
 			<div class="flex_row score">
@@ -16,7 +16,7 @@
 					<img src="../assets/images/time_grey.png" />
 					营业中 周一至周日9:00开始营业
 				</p>
-				<button @click="jumpPage('orderMyAppointment')">我的预约</button>
+				<button @click="jumpPage('reserveMyAppointment')">我的预约</button>
 			</div>
 			<div class="flex_row address">
 				<div class="flex_row">
@@ -63,10 +63,15 @@
 			</div>
 			<!-- 包厢选择 -->
 			<ul class="flex_row text_center box_selection">
-				<li v-for="item of 3" :key="item" :class="{ active: selectBox === item }" @click="selectBox = item">
-					<p>小卡座</p>
-					<p>4-6人</p>
-					<img v-show="selectBox === item" src="../assets/images/select_pink.png" />
+				<li
+					v-for="item of availableRoomTypes"
+					:key="item.roomsortid"
+					:class="{ active: selectRoomType === item.roomsortid }"
+					@click="selectRoomType = item.roomsortid"
+				>
+					<p>{{ item.sortname }}</p>
+					<p>{{ item.size_min }}-{{ item.size_max }}人</p>
+					<img v-show="selectRoomType === item.roomsortid" src="../assets/images/select_pink.png" />
 				</li>
 			</ul>
 			<!-- 现金券 -->
@@ -105,6 +110,7 @@ import Tabbar from '../components/Tabbar.vue';
 // plugins
 import { Rate, Calendar } from 'vant';
 import BScroll from '@better-scroll/core';
+import HttpService from '../utils/http';
 export default {
 	components: {
 		Tabbar,
@@ -113,13 +119,14 @@ export default {
 	},
 	data() {
 		return {
-			// 评分
-			score: 3.7,
+			MerchantDetails: {}, // 商户详情
+			score: 3.7, // 评分
 			// 日期选择
 			isDate: false,
 			selectDate: '',
-			// 包厢
-			selectBox: 1
+			// 包厢类型
+			selectRoomType: null,
+			availableRoomTypes: []
 		};
 	},
 	computed: {
@@ -149,6 +156,15 @@ export default {
 			return selectArray;
 		}
 	},
+	created() {
+		HttpService.MerchantDetails(5129, 1231).then((res) => {
+			this.MerchantDetails = res;
+		});
+
+		HttpService.AvailableRoomTypes(5129).then((res) => {
+			this.availableRoomTypes = res;
+		});
+	},
 	mounted() {
 		this.initBscroll();
 	},
@@ -171,11 +187,12 @@ export default {
 			// 滚动到指定位置
 			for (let i = 0; i < this.selectArray.length; i++) {
 				if (this.selectArray[i].timeStamp === timeStamp) {
-					this.bs.scrollTo(i * width, 0, 0);
+					this.bs.scrollTo(-i * width, 0, 0);
+					// 关闭弹出层
+					this.dateController();
+					return;
 				}
 			}
-			// 关闭弹出层
-			this.dateController();
 		},
 		jumpPage(routeName) {
 			this.$router.push({ name: routeName });

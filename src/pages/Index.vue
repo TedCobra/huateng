@@ -65,7 +65,7 @@ export default {
 	data() {
 		return {
 			nav: [
-				{ name: '会员', sub: 'members', routeName: 'member' },
+				{ name: '会员', sub: 'members', routeName: 'card' },
 				{ name: '优惠券', sub: 'coupon', routeName: 'coupon' },
 				{ name: '预约', sub: 'reservation', routeName: 'reserve' },
 				{ name: '存取酒', sub: 'access' }
