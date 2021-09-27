@@ -2,6 +2,7 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import { Popup } from 'vant';
 
 // plugins
 import 'lib-flexible';
@@ -10,7 +11,7 @@ import 'lib-flexible';
 import './assets/styles/style.scss';
 
 Vue.config.productionTip = false;
-
+Vue.use(Popup);
 new Vue({
 	router,
 	store,
