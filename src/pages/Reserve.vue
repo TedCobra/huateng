@@ -84,7 +84,7 @@
 							<p>¥ <b>100</b></p>
 						</div>
 					</div>
-					<button>预订</button>
+					<button @click="reserve">预订</button>
 				</li>
 			</ul>
 		</div>
@@ -102,6 +102,8 @@
 			:show-mark="false"
 			@confirm="getSelectDate"
 		/>
+
+		<van-popup v-model="isArrivalTime" :position="'bottom'"> 111111 </van-popup>
 	</div>
 </template>
 
@@ -126,7 +128,9 @@ export default {
 			selectDate: '',
 			// 包厢类型
 			selectRoomType: null,
-			availableRoomTypes: []
+			availableRoomTypes: [],
+			// 到店时间
+			isArrivalTime: false
 		};
 	},
 	computed: {
@@ -172,6 +176,12 @@ export default {
 		this.bs.destroy();
 	},
 	methods: {
+		arrivalTimeController() {
+			this.isArrivalTime = !this.isArrivalTime;
+		},
+		reserve() {
+			this.arrivalTimeController();
+		},
 		dateController() {
 			this.isDate = !this.isDate;
 		},

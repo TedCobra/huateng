@@ -2,7 +2,7 @@
 	<div class="member">
 		<!-- 会员卡详情 -->
 		<div class="common_box middle club_card">
-			<MembershipCard :routeName="'memberQRCode'" />
+			<MembershipCard :membershipCardDetails="membershipCardDetails" :routeName="'memberQRCode'" />
 
 			<ul class="flex_row text_center">
 				<li v-for="(item, index) of memberTotal" :key="index" @click="jumpPage(item.routeName)">
@@ -57,6 +57,7 @@ export default {
 	},
 	data() {
 		return {
+			membershipCardDetails: {}, // 会员卡详情
 			memberTotal: [
 				{ name: '余额', amount: 0 },
 				{ name: '积分', amount: 0 },
@@ -95,6 +96,15 @@ export default {
 				{ name: '账单记录', icon: 'bill', routeName: 'memberBill' }
 			]
 		};
+	},
+	created() {
+		// 判断路由是否携带会员卡参数，进行对应操作
+		if (this.$route.params.membershipCardDetails) {
+			this.membershipCardDetails = this.$route.params.membershipCardDetails;
+			sessionStorage.setItem('membershipCardDetails', JSON.stringify(this.membershipCardDetails));
+			return;
+		}
+		this.membershipCardDetails = JSON.parse(sessionStorage.getItem('membershipCardDetails'));
 	},
 	methods: {
 		jumpPage(routeName) {

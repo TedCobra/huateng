@@ -13,7 +13,7 @@
 								<p><span>¥</span>15</p>
 							</div>
 						</div>
-						<div class="flex_col choose-opt"> 
+						<div class="flex_col choose-opt">
 							<div class="flex_row">
 								<img src="../../assets/images/assess_cut.png" alt="" />
 								<span class="num">26</span>

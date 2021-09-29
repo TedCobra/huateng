@@ -12,7 +12,7 @@
 		</div>
 
 		<!-- 列表 -->
-		<MembershipCard v-for="item of 2" :routeName="'member'" :key="item" />
+		<MembershipCard v-for="item of membershipCardList" :key="item.id" :membershipCardDetails="item" :routeName="'member'" />
 	</div>
 </template>
 
@@ -24,9 +24,14 @@ export default {
 	components: {
 		MembershipCard
 	},
+	data() {
+		return {
+			membershipCardList: [] // 会员卡列表
+		};
+	},
 	created() {
-		HttpService.UserTiedCardList().then((res) => {
-			console.log(res);
+		HttpService.UserTiedCardList('oqqkJ42kASZQAWWE3nbJuYk6wYp8', 5129).then((res) => {
+			this.membershipCardList = res;
 		});
 	},
 	methods: {

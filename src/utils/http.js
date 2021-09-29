@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+// 接口
+import Connector from './connector.js';
+
 var INSTANCE = axios.create({
 	baseURL: '/api',
 	headers: {
@@ -10,8 +13,8 @@ var INSTANCE = axios.create({
 
 INSTANCE.interceptors.response.use(
 	(res) => {
-		console.log(res);
-		if (res.status === 200) return Promise.resolve(res);
+		console.log(res.data);
+		if (res.status === 200) return Promise.resolve(res.data);
 		return Promise.reject(res);
 	},
 	(err) => {
@@ -38,11 +41,12 @@ INSTANCE.interceptors.response.use(
 // 	});
 // };
 
-const Post = (apiUrl, params) => {
+const Post = (portDetails, params) => {
 	return new Promise((resolve, reject) => {
-		INSTANCE.post(apiUrl, params)
+		INSTANCE.post(portDetails.api, params)
 			.then((res) => {
-				if (!res.data.err_code) return resolve(res.data.data);
+				if (!res.err_code) return resolve(res.data);
+				console.log(`${portDetails.describe}: ${res.err_msg}`);
 			})
 			.catch((error) => {
 				console.log(error);
@@ -52,41 +56,34 @@ const Post = (apiUrl, params) => {
 };
 
 // 接口
-// 优惠券
 const HttpService = {
-	// 优惠券列表
-	Coupon: function (company_id, eventid) {
-		return Post('warehouseTest/CouponEvent/couponlist', {
+	CouponList: function (company_id, eventid) {
+		return Post(Connector.CouponList, {
 			company_id: company_id,
 			eventid: eventid
 		});
 	},
-	// 优惠券详情
-	// CouponDetails: function (openid, company_id, coupon_code) {
-	// 	return Post('onlinemarketTest/coupon/detail', {
-	// 		openid: openid,
-	// 		company_id: company_id,
-	// 		coupon_code: coupon_code
-	// 	});
-	// },
-	// 商家详情
+	CouponDetails: function (openid, company_id, coupon_code) {
+		return Post(Connector.CouponDetails, {
+			openid: openid,
+			company_id: company_id,
+			coupon_code: coupon_code
+		});
+	},
 	MerchantDetails: function (company_id, uniondid) {
-		return Post('memberserverminiTest/WxCompany/company_page', {
+		return Post(Connector.MerchantDetails, {
 			company_id: company_id,
 			uniondid: uniondid
 		});
 	},
-	// 我的预约
-	MyAppointment: function () {},
-	// 可预定房型
+	// MyAppointment: function () {},
 	AvailableRoomTypes: function (company_id) {
-		return Post('reserveServiceTest/mini/booking/roomsortlist', {
+		return Post(Connector.AvailableRoomTypes, {
 			company_id: company_id
 		});
 	},
-	// 用户绑卡列表
 	UserTiedCardList: function (openid, company_id) {
-		return Post('memberserverminiTest/WxCustomer/list', {
+		return Post(Connector.UserTiedCardList, {
 			openid: openid,
 			company_id: company_id
 		});
@@ -98,7 +95,7 @@ const HttpService = {
 	 * @param {包厢类型} roomsortid
 	 */
 	materialSort: function (company_id, roomsortid) {
-		return Post('material/get_sort', {
+		return Post(Connector.MaterialSort, {
 			company_id: company_id,
 			roomsortid: roomsortid
 		});
@@ -116,7 +113,7 @@ const HttpService = {
 	 * @param {分页数量，默认为10} pagesize
 	 */
 	materialSearch: function (company_id = 5129, materialname, pricetypeid, roomsortid, areaid, guestid) {
-		return Post('onlinemarketTest/material/search', {
+		return Post(Connector.MaterialSearch, {
 			company_id: company_id,
 			materialname: materialname,
 			pricetypeid: pricetypeid,
@@ -128,7 +125,7 @@ const HttpService = {
 
 	//获取热卖商品套餐
 	materialHot: function (company_id = 5129) {
-		return Post('onlinemarketTest/material/hot_group', {
+		return Post(Connector.MaterialHot, {
 			company_id: company_id
 		});
 	},
@@ -140,13 +137,12 @@ const HttpService = {
 	 * @param {物品Id} openid
 	 */
 	materialGroupInfo: function (company_id, pricetypeid, openid) {
-		return Post('onlinemarketTest/material/hot_group', {
+		return Post(Connector.MaterialGroupInfo, {
 			company_id: company_id,
 			pricetypeid: pricetypeid,
 			openid: openid
 		});
 	}
-
 };
 
 export default HttpService;
