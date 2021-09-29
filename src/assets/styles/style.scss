@@ -905,13 +905,13 @@ body {
 				> ul {
 					@extend .flex_row;
 					align-items: center;
-					width: 734px;
+					width: 785px;
 					height: 100%;
 					li {
 						@extend .flex_col;
 						justify-content: center;
 						@extend .text_center;
-						width: 36px;
+						width: 40px;
 						height: 100%;
 						margin-left: 15px;
 						font-size: 10px;

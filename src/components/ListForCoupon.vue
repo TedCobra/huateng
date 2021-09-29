@@ -3,7 +3,7 @@
 		<!-- 列表 -->
 		<div class="list" ref="listScroll">
 			<ul>
-				<li v-for="item of dataArray" :key="item.couponid" class="common_row" @click="checkTheDetails(item.title, item.note)">
+				<li v-for="item of dataArray" :key="item.couponid" class="common_row">
 					<div>
 						<div>
 							<img :src="item.picture" />
@@ -11,7 +11,7 @@
 						<div>
 							<h6>{{ item.title }}</h6>
 							<p>{{ item.createdatetime }}</p>
-							<p v-show="isNeedDetails" class="details">点击查看详情</p>
+							<p v-show="isNeedDetails" class="details" @click="checkTheDetails(item.title, item.note)">点击查看详情</p>
 						</div>
 					</div>
 					<button class="active" @click.stop="useCoupon()">立即领取</button>

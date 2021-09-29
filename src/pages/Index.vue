@@ -27,20 +27,20 @@
 			<div class="coupon">
 				<div class="flex_row title">
 					<h4>领劵中心</h4>
-					<p>
+					<p @click="jumpPage('coupon')">
 						More
 						<img src="../assets/images/coupon_arrow.png" />
 					</p>
 				</div>
 				<!-- 列表 -->
-				<ListForCoupon :isScroll="false" :isNeedDetails="false" :dataArray="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]" />
+				<ListForCoupon :isScroll="false" :isNeedDetails="false" :dataArray="coupon" />
 			</div>
 		</div>
 
 		<!-- 存取酒 -->
 		<van-dialog v-model="isAccess" :show-confirm-button="false" :close-on-click-overlay="true">
 			<ul class="flex_row access">
-				<li v-for="item of access" :key="item.routeName" @click="$router.push({ name: item.routeName })">
+				<li v-for="item of access" :key="item.routeName" @click="jumpPage(item.routeName)">
 					<h3>
 						{{ item.label }}
 						<img :src="require(`../assets/images/${item.img}.png`)" />
@@ -56,6 +56,7 @@
 import ListForCoupon from '../components/ListForCoupon.vue';
 // plugins
 import { Dialog } from 'vant';
+import HttpService from '../utils/http';
 
 export default {
 	components: {
@@ -84,8 +85,14 @@ export default {
 					img: 'access_withdraw',
 					routeName: 'accessWithdraw'
 				}
-			]
+			],
+			coupon: [] // 优惠券列表
 		};
+	},
+	created() {
+		HttpService.CouponList(5129, 31).then((res) => {
+			this.coupon = res;
+		});
 	},
 	methods: {
 		jumpPage(routeName) {

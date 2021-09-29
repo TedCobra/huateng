@@ -78,7 +78,7 @@ import OrderCoupon from './OrderCoupon.vue';
 export default {
 	components: {
 		OrderPay,
-		OrderCoupon,
+		OrderCoupon
 		// OrderChoosed
 	},
 	data() {

@@ -2,10 +2,10 @@
 	<div class="membership_card" @click="jumpPage">
 		<img src="../assets/images/card_gold.png" />
 		<div>
-			<h4>普通会员卡</h4>
+			<h4>{{ membershipCardDetails.gradename }}</h4>
 			<p>members</p>
-			<p>会员:0012147454114</p>
-			<p>有效期至:2050-12-31</p>
+			<p>会员: {{ membershipCardDetails.cardnum }}</p>
+			<p>有效期至: {{ membershipCardDetails.carduselimitdate }}</p>
 		</div>
 	</div>
 </template>
@@ -13,11 +13,12 @@
 <script>
 export default {
 	props: {
-		routeName: String
+		routeName: String,
+		membershipCardDetails: Object
 	},
 	methods: {
 		jumpPage() {
-			this.$router.push({ name: this.routeName });
+			this.$router.push({ name: this.routeName, params: { membershipCardDetails: this.membershipCardDetails } });
 		}
 	}
 };

@@ -6,7 +6,7 @@
 				<p>选择会员卡</p>
 				<img src="../../assets/images/close_dialog.png" @click="close" />
 			</div>
-            <ul class="flex_col">
+			<ul class="flex_col">
 				<li>
 					<img src="../../assets/images/mem_card_silver.png" class="cards-bg" />
 					<div class="cards-content">
