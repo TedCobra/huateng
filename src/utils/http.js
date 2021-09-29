@@ -1,12 +1,7 @@
 import axios from 'axios';
 
-const CouponList = { describe: '优惠券列表', api: 'warehouseTest/CouponEvent/couponlist' };
-
-const CouponDetails = { describe: '优惠券详情', api: 'onlinemarketTest/coupon/detail' };
-// const MyAppointment = { describe: '我的预约', api: '' };
-const AvailableRoomTypes = { describe: '可预定房型', api: 'reserveServiceTest/mini/booking/roomsortlist' };
-const UserTiedCardList = { describe: '用户绑卡列表', api: 'memberserverminiTest/WxCustomer/list' };
-const MerchantDetails = { describe: '商家详情', api: 'memberserverminiTest/WxCompany/company_page' };
+// 接口
+import Connector from './connector.js';
 
 var INSTANCE = axios.create({
 	baseURL: '/api',
@@ -63,35 +58,38 @@ const Post = (portDetails, params) => {
 // 接口
 const HttpService = {
 	CouponList: function (company_id, eventid) {
-		return Post(CouponList, {
+		return Post(Connector.CouponList, {
 			company_id: company_id,
 			eventid: eventid
 		});
 	},
 	CouponDetails: function (openid, company_id, coupon_code) {
-		return Post(CouponDetails, {
+		return Post(Connector.CouponDetails, {
 			openid: openid,
 			company_id: company_id,
 			coupon_code: coupon_code
 		});
 	},
 	MerchantDetails: function (company_id, uniondid) {
-		return Post(MerchantDetails, {
+		return Post(Connector.MerchantDetails, {
 			company_id: company_id,
 			uniondid: uniondid
 		});
 	},
 	// MyAppointment: function () {},
 	AvailableRoomTypes: function (company_id) {
-		return Post(AvailableRoomTypes, {
+		return Post(Connector.AvailableRoomTypes, {
 			company_id: company_id
 		});
 	},
 	UserTiedCardList: function (openid, company_id) {
-		return Post(UserTiedCardList, {
+		return Post(Connector.UserTiedCardList, {
 			openid: openid,
 			company_id: company_id
 		});
+	},
+	MembershipCard: function () {
+		return Post(Connector.MembershipCard, {});
 	}
 };
 
