@@ -90,7 +90,63 @@ const HttpService = {
 			openid: openid,
 			company_id: company_id
 		});
+	},
+
+	/**
+	 * 菜单类型列表
+	 * @param {公司Id} company_id
+	 * @param {包厢类型} roomsortid
+	 */
+	materialSort: function (company_id, roomsortid) {
+		return Post('material/get_sort', {
+			company_id: company_id,
+			roomsortid: roomsortid
+		});
+	},
+
+	/**
+	 * 菜品搜索
+	 * @param {公司id} company_id
+	 * @param {物品名称} materialname
+	 * @param {价格类型Id} pricetypeid
+	 * @param {包厢类型ID} roomsortid
+	 * @param {区域id} areaid
+	 * @param {会员id} guestid
+	 * @param {分页，全部为-1，首页为0} page
+	 * @param {分页数量，默认为10} pagesize
+	 */
+	materialSearch: function (company_id = 5129, materialname, pricetypeid, roomsortid, areaid, guestid) {
+		return Post('onlinemarketTest/material/search', {
+			company_id: company_id,
+			materialname: materialname,
+			pricetypeid: pricetypeid,
+			roomsortid: roomsortid,
+			areaid: areaid,
+			guestid: guestid
+		});
+	},
+
+	//获取热卖商品套餐
+	materialHot: function (company_id = 5129) {
+		return Post('onlinemarketTest/material/hot_group', {
+			company_id: company_id
+		});
+	},
+
+	/**
+	 * 获取套餐数据
+	 * @param {*} company_id
+	 * @param {价格类型Id} pricetypeid
+	 * @param {物品Id} openid
+	 */
+	materialGroupInfo: function (company_id, pricetypeid, openid) {
+		return Post('onlinemarketTest/material/hot_group', {
+			company_id: company_id,
+			pricetypeid: pricetypeid,
+			openid: openid
+		});
 	}
+
 };
 
 export default HttpService;
