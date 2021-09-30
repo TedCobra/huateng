@@ -7,6 +7,8 @@ const Connector = {
 	MyAppointment: { describe: '我的预约', api: '' },
 	// 可预定房型
 	AvailableRoomTypes: { describe: '可预定房型', api: 'reserveServiceTest/mini/booking/roomsortlist' },
+	// 买断方案
+	BuyoutPlan: { describe: '买断方案', api: 'reserveServiceTest/mini/booking/buyoutset' },
 	// 用户绑卡列表
 	UserTiedCardList: { describe: '用户绑卡列表', api: 'memberserverminiTest/WxCustomer/list' },
 	// 商家详情

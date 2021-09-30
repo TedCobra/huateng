@@ -82,6 +82,20 @@ const HttpService = {
 			company_id: company_id
 		});
 	},
+
+	/**
+	 * @param {商家编号 number} company_id
+	 * @param {包厢类型 number} roomsortid
+	 * @param {预定时间 yyyy-mm-dd} reservationdate
+	 * @returns
+	 */
+	BuyoutPlan: (company_id, roomsortid, reservationdate) => {
+		return Post(Connector.BuyoutPlan, {
+			company_id: company_id,
+			roomsortid: roomsortid,
+			reservationdate: reservationdate
+		});
+	},
 	UserTiedCardList: function (openid, company_id) {
 		return Post(Connector.UserTiedCardList, {
 			openid: openid,
