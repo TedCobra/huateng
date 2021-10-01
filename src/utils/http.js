@@ -57,33 +57,33 @@ const Post = (portDetails, params) => {
 
 // 接口
 const HttpService = {
-	CouponList: function (company_id, eventid) {
+	CouponList: (company_id, eventid) => {
 		return Post(Connector.CouponList, {
 			company_id: company_id,
 			eventid: eventid
 		});
 	},
-	CouponDetails: function (openid, company_id, coupon_code) {
+	CouponDetails: (openid, company_id, coupon_code) => {
 		return Post(Connector.CouponDetails, {
 			openid: openid,
 			company_id: company_id,
 			coupon_code: coupon_code
 		});
 	},
-	MerchantDetails: function (company_id, uniondid) {
+	MerchantDetails: (company_id, uniondid) => {
 		return Post(Connector.MerchantDetails, {
 			company_id: company_id,
 			uniondid: uniondid
 		});
 	},
-	// MyAppointment: function () {},
-	AvailableRoomTypes: function (company_id) {
+	// MyAppointment: () => {},
+	AvailableRoomTypes: (company_id) => {
 		return Post(Connector.AvailableRoomTypes, {
 			company_id: company_id
 		});
 	},
-
 	/**
+	 *
 	 * @param {商家编号 number} company_id
 	 * @param {包厢类型 number} roomsortid
 	 * @param {预定时间 yyyy-mm-dd} reservationdate
@@ -96,14 +96,26 @@ const HttpService = {
 			reservationdate: reservationdate
 		});
 	},
-	UserTiedCardList: function (openid, company_id) {
+	UserTiedCardList: (openid, company_id) => {
 		return Post(Connector.UserTiedCardList, {
 			openid: openid,
 			company_id: company_id
 		});
 	},
-	MembershipCard: function () {
+	MembershipCard: () => {
 		return Post(Connector.MembershipCard, {});
+	},
+	/**
+	 *
+	 * @param {商家编号 number} company_id
+	 * @param {等级id number} gradeid
+	 * @returns
+	 */
+	MemberSharingRewards: (company_id, gradeid) => {
+		return Post(Connector.MemberSharingRewards, {
+			company_id: company_id,
+			gradeid: gradeid
+		});
 	}
 };
 

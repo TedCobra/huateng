@@ -17,7 +17,9 @@ const Connector = {
 		api: 'memberserverminiTest/WxCompany/company_page'
 	},
 	// 会员建卡
-	MembershipCard: { describe: '会员建卡', api: 'memberserverminiTest/WxCustomer/create' }
+	MembershipCard: { describe: '会员建卡', api: 'memberserverminiTest/WxCustomer/create' },
+	// 会员分享奖励
+	MemberSharingRewards: { describe: '会员分享奖励', api: 'memberserverminiTest//Membersharerule/wechat_rulelist' }
 };
 
 export default Connector;
