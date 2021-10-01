@@ -1,10 +1,10 @@
 <template>
-	<div class="application_card small">
+	<div class="small application_card">
 		<p class="title">会员卡</p>
 		<ul>
-			<li v-for="item of 2" :key="item" class="flex_row">
-				<div>
-					<img src="../../../assets/images/right_white.png" />
+			<li v-for="item of 2" :key="item" class="flex_row" @click="selectCard = item">
+				<div :class="{ active: selectCard === item }">
+					<img v-show="selectCard === item" src="../../../assets/images/right_white.png" />
 				</div>
 				<div>
 					<div class="flex_row membership_card">
@@ -14,17 +14,19 @@
 						</div>
 						<p>免费</p>
 					</div>
+
 					<ul class="flex_row top_up">
 						<li>0元购卡</li>
 						<li>充值100000送100000</li>
 						<li>充值100000送100000</li>
 					</ul>
+
 					<div class="flex_row sale">
 						<div>
 							<img src="../../../assets/images/sale_pink.png" />
 							享受会员享受会员享受会员享受会员
 						</div>
-						<button class="flex_row">
+						<button class="flex_row" @click.stop="checkCardDetails">
 							详情
 							<img src="../../../assets/images/arrow_blue.png" />
 						</button>
@@ -39,9 +41,14 @@
 <script>
 export default {
 	data() {
-		return {};
+		return {
+			selectCard: null // 选中卡片类型
+		};
 	},
 	methods: {
+		checkCardDetails() {
+			console.log('methods: checkCardDetails');
+		},
 		jumpPage(routeName) {
 			this.$router.push({ name: routeName });
 		}

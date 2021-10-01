@@ -145,7 +145,7 @@ select {
 		}
 	}
 }
-.membership_card {
+.member_ship_card {
 	position: relative;
 	> img {
 		width: 100%;
@@ -1266,6 +1266,7 @@ body {
 					&:nth-child(2) {
 						width: 264px;
 						> .membership_card {
+							@extend .flex_row;
 							justify-content: space-between;
 							align-items: center;
 							> div {

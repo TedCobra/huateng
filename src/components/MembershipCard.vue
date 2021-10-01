@@ -1,5 +1,5 @@
 <template>
-	<div class="membership_card" @click="jumpPage">
+	<div class="member_ship_card" @click="jumpPage">
 		<!-- 背景图 -->
 		<img :src="membershipCardDetails.imageurl ? membershipCardDetails.imageurl : require('../assets/images/card_gold.png')" />
 		<!-- 会员详情 -->

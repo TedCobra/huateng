@@ -57,12 +57,25 @@ const Post = (portDetails, params) => {
 
 // 接口
 const HttpService = {
+	/**
+	 *
+	 * @param {商家编号 number} company_id
+	 * @param {活动编号 number} eventid
+	 * @returns
+	 */
 	CouponList: (company_id, eventid) => {
 		return Post(Connector.CouponList, {
 			company_id: company_id,
 			eventid: eventid
 		});
 	},
+	/**
+	 *
+	 * @param {会员ID} openid
+	 * @param {商家编号 number} company_id
+	 * @param {优惠券码} coupon_code
+	 * @returns
+	 */
 	CouponDetails: (openid, company_id, coupon_code) => {
 		return Post(Connector.CouponDetails, {
 			openid: openid,
@@ -70,13 +83,23 @@ const HttpService = {
 			coupon_code: coupon_code
 		});
 	},
+	/**
+	 *
+	 * @param {商家编号 number} company_id
+	 * @param {微信或支付宝对应用户id} uniondid
+	 * @returns
+	 */
 	MerchantDetails: (company_id, uniondid) => {
 		return Post(Connector.MerchantDetails, {
 			company_id: company_id,
 			uniondid: uniondid
 		});
 	},
-	// MyAppointment: () => {},
+	/**
+	 *
+	 * @param {商家编号 number} company_id
+	 * @returns
+	 */
 	AvailableRoomTypes: (company_id) => {
 		return Post(Connector.AvailableRoomTypes, {
 			company_id: company_id
@@ -96,14 +119,41 @@ const HttpService = {
 			reservationdate: reservationdate
 		});
 	},
+	/**
+	 *
+	 * @param {会员openId} openid
+	 * @param {商家编号 number} company_id
+	 * @returns
+	 */
 	UserTiedCardList: (openid, company_id) => {
 		return Post(Connector.UserTiedCardList, {
 			openid: openid,
 			company_id: company_id
 		});
 	},
-	MembershipCard: () => {
-		return Post(Connector.MembershipCard, {});
+	/**
+	 *
+	 * @param {商家编号 number} company_id
+	 * @param {会员openId} openid
+	 * @param {手机号码 number} telephone
+	 * @param {会员名称 string} customername
+	 * @param {等级id number} gradeid
+	 * @param {性别 string 男/女} sex
+	 * @param {生日 yyyy-mm-dd} birthdate
+	 * @param {?} shareguid
+	 * @returns
+	 */
+	MembershipCard: (company_id, openid, telephone, customername, gradeid, sex, birthdate, shareguid) => {
+		return Post(Connector.MembershipCard, {
+			company_id: company_id,
+			openid: openid,
+			telephone: telephone,
+			customername: customername,
+			gradeid: gradeid,
+			sex: sex,
+			birthdate: birthdate,
+			shareguid: shareguid
+		});
 	},
 	/**
 	 *
