@@ -11,6 +11,12 @@ const Connector = {
 	// 买断方案
 	BuyoutPlan: { describe: '买断方案', api: 'reserveServiceTest/mini/booking/buyoutset' },
 
+	// 我的预约
+	MyAppointment: { describe: '我的预约', api: 'reserveServiceTest/mini/booking/orderlist' },
+
+	// 预定酒水方案
+	BookADrinkPlan: { describe: '预定酒水方案', api: 'reserveServiceTest/mini/booking/chargingwineset' },
+
 	// 用户绑卡列表
 	UserTiedCardList: { describe: '用户绑卡列表', api: 'memberserverminiTest/WxCustomer/list' },
 

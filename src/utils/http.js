@@ -121,6 +121,43 @@ const HttpService = {
 	},
 	/**
 	 *
+	 * @param {品牌编号 number} parent_id
+	 * @param {商家编号 number} company_id
+	 * @param {会员ID} openid
+	 * @param {分页索引 number} page
+	 * @param {页数 number} page_size
+	 * @returns
+	 */
+	// begindatetime || enddatetime
+	MyAppointment: (parent_id, company_id, openid, page, page_size) => {
+		return Post(Connector.MyAppointment, {
+			parent_id: parent_id,
+			company_id: company_id,
+			openid: openid,
+			page: page,
+			page_size: page_size
+		});
+	},
+	/**
+	 *
+	 * @param {商家编号 number} company_id
+	 * @param {包厢类型 number} roomsortid
+	 * @param {预定方案 number} roomreservationid
+	 * @param {计费类型 1买断 2计时} chargingtype
+	 * @param {预定时间 yyyy-mm-dd} reservationdate
+	 * @returns
+	 */
+	BookADrinkPlan: (company_id, roomsortid, roomreservationid, chargingtype, reservationdate) => {
+		return Post(Connector.BookADrinkPlan, {
+			company_id: company_id,
+			roomsortid: roomsortid,
+			roomreservationid: roomreservationid,
+			chargingtype: chargingtype,
+			reservationdate: reservationdate
+		});
+	},
+	/**
+	 *
 	 * @param {会员openId} openid
 	 * @param {商家编号 number} company_id
 	 * @returns

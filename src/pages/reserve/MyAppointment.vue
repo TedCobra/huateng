@@ -21,3 +21,15 @@
 		</ul>
 	</div>
 </template>
+
+<script>
+import HttpService from '../../utils/http';
+
+export default {
+	created() {
+		HttpService.MyAppointment().then((res) => {
+			console.log(res);
+		});
+	}
+};
+</script>

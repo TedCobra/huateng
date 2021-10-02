@@ -542,7 +542,7 @@ body {
 			}
 		}
 	}
-	> .membership_card {
+	> .member_ship_card {
 		width: 345px;
 		margin: 20px auto 0;
 		border-radius: 8px;
@@ -1063,7 +1063,7 @@ body {
 				align-items: center;
 				> p {
 					font-size: 16px;
-					color: #FFFFFF;
+					color: #ffffff;
 				}
 				> h4 {
 					font-size: 20px;
@@ -1092,8 +1092,8 @@ body {
 						margin-right: 7.5px;
 					}
 					&.active {
-						border-color: #2E66F9;
-						color: #2E66F9;
+						border-color: #2e66f9;
+						color: #2e66f9;
 					}
 					> img {
 						width: 14px;
@@ -1133,6 +1133,58 @@ body {
 				color: #ffffff;
 			}
 		}
+		&.drink_package {
+			padding: 20px;
+			> ul {
+				> li {
+					@extend .flex_row;
+					justify-content: space-between;
+					&:not(:last-child) {
+						margin-bottom: 20px;
+					}
+					> div {
+						&:first-child {
+							@extend .flex_row;
+							justify-content: center;
+							align-items: center;
+							width: 14px;
+							height: 14px;
+							margin-top: 3px;
+							border: 1px solid #cccccc;
+							border-radius: 50%;
+							> img {
+								width: 9px;
+								display: none;
+							}
+							&.active {
+								background: #2e66f9;
+								border-color: #2e66f9;
+								> img {
+									display: block;
+								}
+							}
+						}
+						&:nth-child(2) {
+							width: 284px;
+							> div {
+								justify-content: space-between;
+								> h3 {
+									font-size: 14px;
+									color: #ffffff;
+								}
+							}
+							> p {
+								overflow: hidden;
+								white-space: nowrap;
+								text-overflow: ellipsis;
+								font-size: 12px;
+								color: #6a6c78;
+							}
+						}
+					}
+				}
+			}
+		}
 		&.edit_details {
 			> ul {
 				> li {
@@ -1147,6 +1199,9 @@ body {
 						text-align: justify;
 						font-size: 14px;
 						color: #ffffff;
+						> span {
+							margin-right: 28px;
+						}
 					}
 					> input {
 						width: calc(100% - 70px);
@@ -1154,6 +1209,9 @@ body {
 						background: transparent;
 						font-size: 14px;
 						color: #ffffff;
+						&::placeholder {
+							color: #6a6c78;
+						}
 					}
 				}
 			}
@@ -1165,9 +1223,11 @@ body {
 		width: 100%;
 		height: 50px;
 		background: #272935;
+		box-shadow: 0px -4px 8px 0px rgba(0, 0, 0, 0.06);
 		position: fixed;
 		left: 0;
 		bottom: 0;
+		z-index: 9999;
 		> p {
 			padding-left: 20px;
 			font-size: 16px;
@@ -1187,6 +1247,10 @@ body {
 					width: 8px;
 					margin-left: 5px;
 					transform: rotate(-180deg);
+					transition: all 0.3s;
+					&.active {
+						transform: rotate(-360deg);
+					}
 				}
 			}
 			> button {
@@ -1195,6 +1259,75 @@ body {
 				background: #266df2;
 				font-size: 14px;
 				color: #ffffff;
+			}
+		}
+	}
+	> .van-popup {
+		background: #272935;
+		border-radius: 8px 8px 0 0;
+		&.van-popup--bottom {
+			bottom: 50px;
+		}
+		> .consumer_details {
+			> h2 {
+				padding: 20px 20px 15px;
+				border-bottom: 1px solid #000000;
+				font-size: 16px;
+				color: #ffffff;
+			}
+			> div {
+				justify-content: space-between;
+				align-items: center;
+				&:nth-child(2) {
+					padding: 15px 20px;
+					border-bottom: 1px solid #000000;
+				}
+				&:nth-child(3) {
+					padding: 15px 20px 10px;
+				}
+				> p {
+					font-size: 14px;
+					color: #ffffff;
+				}
+			}
+			> ul {
+				padding: 0 20px;
+				> li {
+					@extend .flex_row;
+					justify-content: space-between;
+					align-items: center;
+					margin-bottom: 10px;
+					font-size: 12px;
+					color: #6a6c78;
+				}
+			}
+		}
+		> .van-picker {
+			background: #272935;
+			> .van-picker__toolbar {
+				border-bottom: 1px solid #000000;
+				> .van-picker__cancel {
+					color: #6a6c78;
+				}
+				> .van-picker__confirm {
+					color: #266df2;
+				}
+			}
+			> .van-picker__columns {
+				> .van-picker-column {
+					> .van-picker-column__wrapper {
+						> .van-picker-column__item {
+							color: #ffffff;
+						}
+					}
+				}
+				> .van-picker__mask {
+					background-image: none;
+				}
+				[class*=van-hairline]::after {
+					border-top: 1px solid #000000;
+					border-bottom: 1px solid #000000;
+				}
 			}
 		}
 	}
@@ -1254,13 +1387,18 @@ body {
 						align-items: center;
 						width: 16px;
 						height: 16px;
-						border: 1px solid #2e66f9;
+						border: 1px solid #ffffff;
 						border-radius: 50%;
-						&.active {
-							background: #2e66f9;
-						}
 						> img {
 							width: 9px;
+							display: none;
+						}
+						&.active {
+							background: #2e66f9;
+							border-color: #2e66f9;
+							> img {
+								display: block;
+							}
 						}
 					}
 					&:nth-child(2) {

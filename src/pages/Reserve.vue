@@ -50,8 +50,8 @@
 						<li
 							v-for="item of selectArray"
 							:key="item.timeStamp"
-							:class="{ active: selectDate === item.timeStamp }"
-							@click="changeSelectDate(item.timeStamp, item.dayOfTheWeek)"
+							:class="{ active: orderParams.selectDate === item.timeStamp }"
+							@click="changeSelectDate(item.timeStamp, item.dayOfTheWeek, item.week)"
 						>
 							{{ item.monthAndDay }}
 							<br />
@@ -67,12 +67,12 @@
 					<li
 						v-for="item of availableRoomTypes"
 						:key="item.roomsortid"
-						:class="{ active: selectRoomType === item.roomsortid }"
-						@click="exchangeSelectRoomType(item.roomsortid, item.sortname)"
+						:class="{ active: orderParams.selectRoomType === item.roomsortid }"
+						@click="exchangeSelectRoomType(item.roomsortid, item.sortname, item.size_min, item.size_max)"
 					>
 						<p>{{ item.sortname }}</p>
 						<p>{{ item.size_min }}-{{ item.size_max }}人</p>
-						<img v-show="selectRoomType === item.roomsortid" src="../assets/images/select_pink.png" />
+						<img v-show="orderParams.selectRoomType === item.roomsortid" src="../assets/images/select_pink.png" />
 					</li>
 				</ul>
 			</div>
@@ -81,14 +81,23 @@
 				<li v-for="item of buyoutPlans" :key="item.roomreservationid" class="flex_row">
 					<div>
 						<h6>{{ item.begintime }} - {{ item.endtime }}</h6>
-						<p>{{ item.timeDiffrence }}小时欢唱时间，{{ item.ismaterialrequired ? '可选套餐' : '套餐不可选' }}</p>
+						<p>{{ item.timeDiffrence }}小时欢唱时间，可选套餐</p>
 						<p>
 							¥ <b>{{ item[`week${dayOfTheWeek}money`] }}</b>
 						</p>
 					</div>
 					<button
 						:class="{ grey: !item.roomnum }"
-						@click="reserve(item.roomnum, item.begintime, item.timeDiffrence, item[`week${dayOfTheWeek}money`])"
+						@click="
+							reserve(
+								item.roomreservationid,
+								item.roomnum,
+								item.begintime,
+								item.endtime,
+								item.timeDiffrence,
+								item[`week${dayOfTheWeek}money`]
+							)
+						"
 					>
 						预订
 					</button>
@@ -102,7 +111,7 @@
 		<!-- puglin -->
 		<Calendar
 			v-model="isDate"
-			:default-date="new Date(selectDate)"
+			:default-date="new Date(orderParams.selectDate)"
 			:color="'#2E66F9'"
 			:min-date="minDate"
 			:max-date="maxDate"
@@ -113,14 +122,19 @@
 		<van-popup v-model="isArrivalTime" :position="'bottom'">
 			<div class="arrival_time">
 				<div class="flex_row">
-					<p>{{ boxName }} (可预定时段)</p>
-					<h4>￥{{ amount }}</h4>
+					<p>{{ orderParams.boxName }} (可预定时段)</p>
+					<h4>￥{{ orderParams.amount }}</h4>
 				</div>
 				<p>请选择您到店时间</p>
 				<ul class="flex_row">
-					<li v-for="item of timeArray" :key="item" :class="{ active: selectTime === item }" @click="selectTime = item">
+					<li
+						v-for="item of timeArray"
+						:key="item"
+						:class="{ active: orderParams.selectTime === item }"
+						@click="orderParams.selectTime = item"
+					>
 						{{ item }}
-						<img v-show="selectTime === item" src="../assets/images/select_blue.png" />
+						<img v-show="orderParams.selectTime === item" src="../assets/images/select_blue.png" />
 					</li>
 				</ul>
 				<button @click="choosePackage">下一步 选择套餐</button>
@@ -132,7 +146,7 @@
 <script>
 import Tabbar from '../components/Tabbar.vue';
 // util
-import { YearMonthDay } from '../utils/util';
+import { yearMonthDay, fullZero } from '../utils/util';
 // plugins
 import { Rate, Calendar } from 'vant';
 import BScroll from '@better-scroll/core';
@@ -149,21 +163,26 @@ export default {
 			MerchantDetails: {}, // 商户详情
 			distance: 0, // 用户距离
 			score: 5, // 商户评分
-			// 日期选择
-			isDate: false,
-			selectDate: null, // 时间戳
+			isDate: false, // 日期选择弹窗
 			dayOfTheWeek: null, // 星期 1-7
 			timeArray: [], // 到店时间可选列表
-			// 包厢类型
-			selectRoomType: null,
-			availableRoomTypes: [],
-			boxName: '', // 包厢名称
-			// 到店时间
-			isArrivalTime: false,
-			selectTime: null,
-			// 买断方案
-			buyoutPlans: [],
-			amount: 0
+			availableRoomTypes: [], // 包厢类型
+			isArrivalTime: false, // 到店时间弹窗
+			buyoutPlans: [], // 买断方案
+			// 订单查询参数
+			orderParams: {
+				selectDate: null, // 时间戳
+				week: '', // 星期几
+				selectRoomType: null, // 包厢类型
+				boxName: '', // 包厢名称
+				scheduledPlan: null, // 买断方案
+				beginTime: null, // 买断开始时间
+				endTime: null, // 买断结束时间
+				minNumber: 0, // 包厢限制最少人数
+				maxNumber: 0, //包厢限制最多人数
+				amount: 0, // 金额
+				selectTime: null // 到店时间
+			}
 		};
 	},
 	computed: {
@@ -188,7 +207,7 @@ export default {
 				selectArray.push({
 					week: `周${weekArray[dayOfTheWeek]}`,
 					dayOfTheWeek: dayOfTheWeek ? dayOfTheWeek : 7,
-					monthAndDay: `${this.getFullZero(nextDate.getMonth() + 1)}-${this.getFullZero(nextDate.getDate())}`,
+					monthAndDay: `${fullZero(nextDate.getMonth() + 1)}-${fullZero(nextDate.getDate())}`,
 					timeStamp: nextDate.getTime()
 				});
 			}
@@ -212,9 +231,9 @@ export default {
 	},
 	methods: {
 		getBuyoutPlan() {
-			if (this.selectDate && this.selectRoomType) {
-				let date = YearMonthDay(this.selectDate);
-				HttpService.BuyoutPlan(5129, this.selectRoomType, date).then((res) => {
+			if (this.orderParams.selectDate && this.orderParams.selectRoomType) {
+				let date = yearMonthDay(this.orderParams.selectDate);
+				HttpService.BuyoutPlan(5129, this.orderParams.selectRoomType, date).then((res) => {
 					res.some((item) => {
 						let endHour = Number(item.endtime.split(':')[0]);
 						let beginHour = Number(item.begintime.split(':')[0]);
@@ -225,17 +244,24 @@ export default {
 				});
 			}
 		},
-		exchangeSelectRoomType(roomsortid, boxName) {
-			this.selectRoomType = roomsortid;
-			this.boxName = boxName;
+		exchangeSelectRoomType(roomsortid, boxName, minNumber, maxNumber) {
+			this.orderParams = Object.assign(this.orderParams, {
+				selectRoomType: roomsortid,
+				boxName: boxName,
+				minNumber: minNumber,
+				maxNumber: maxNumber
+			});
 			this.getBuyoutPlan();
 		},
 		arrivalTimeController() {
 			this.isArrivalTime = !this.isArrivalTime;
 		},
-		reserve(roomNumber, beginTime, timeDiffrence, amount) {
+		reserve(roomreservationid, roomNumber, beginTime, endTime, timeDiffrence, amount) {
+			this.orderParams.scheduledPlan = roomreservationid;
+			this.orderParams.beginTime = beginTime;
+			this.orderParams.endTime = endTime;
+			// 根据开始时间处理到店时间
 			if (roomNumber) {
-				// 根据开始时间处理到店时间
 				beginTime = beginTime.split(':');
 				let timeArray = [];
 				for (let i = 0; i < timeDiffrence * 2; i++) {
@@ -244,7 +270,7 @@ export default {
 					timeArray.push(`${hour.split('.')[0]}:${minute}`);
 				}
 				this.timeArray = timeArray;
-				this.amount = amount;
+				this.orderParams.amount = amount;
 				// 显示到店时间弹窗
 				this.arrivalTimeController();
 			}
@@ -252,8 +278,9 @@ export default {
 		dateController() {
 			this.isDate = !this.isDate;
 		},
-		changeSelectDate(timeStamp, dayOfTheWeek) {
-			this.selectDate = timeStamp;
+		changeSelectDate(timeStamp, dayOfTheWeek, week) {
+			this.orderParams.selectDate = timeStamp;
+			this.orderParams.week = week;
 			this.dayOfTheWeek = dayOfTheWeek;
 			this.getBuyoutPlan();
 		},
@@ -274,13 +301,12 @@ export default {
 			}
 		},
 		choosePackage() {
-			if (this.selectTime) this.jumpPage('reserveOrder', {});
+			if (this.orderParams.selectTime) {
+				this.jumpPage('reserveOrder', this.orderParams);
+			}
 		},
 		jumpPage(routeName, params) {
 			this.$router.push({ name: routeName, params: params });
-		},
-		getFullZero(num) {
-			return num > 9 ? num : `0${num}`;
 		},
 		initBscroll() {
 			this.bs = new BScroll(this.$refs.dateScroll, {
