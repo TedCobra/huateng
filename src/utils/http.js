@@ -142,6 +142,21 @@ const HttpService = {
 			pricetypeid: pricetypeid,
 			openid: openid
 		});
+	},
+
+	/**
+	 *
+	 * @param {*} company_id
+	 * @param {房间id} rooid
+	 * @param {订单编号} onlineorderno
+	 * @returns []
+	 */
+	orderGgetDdetail: function (company_id, rooid, onlineorderno) {
+		return Post(Connector.MaterialGroupInfo, {
+			company_id: company_id,
+			rooid: rooid,
+			onlineorderno: onlineorderno
+		});
 	}
 };
 

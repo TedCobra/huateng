@@ -18,16 +18,19 @@ const Connector = {
 	MembershipCard: { describe: '会员建卡', api: 'memberserverminiTest/WxCustomer/create' },
 
 	//菜单类型列表
-	MaterialSort: { describe: '菜单类型列表', api: 'material/get_sort' },
+	MaterialSort: { describe: '菜单类型列表', api: 'onlinemarketTest/material/get_sort' },
 
 	//菜品搜索
-	MaterialSearch: { describe: '菜品搜索', api: 'material/onlinemarketTest/material/search' },
+	MaterialSearch: { describe: '菜品搜索', api: 'onlinemarketTest/material/search' },
 
 	//获取热卖商品套餐
-	MaterialHot: { describe: '菜品搜索', api: 'material/onlinemarketTest/material/hot_group' },
+	MaterialHot: { describe: '菜品搜索', api: 'onlinemarketTest/material/hot_group' },
 
 	// 获取套餐数据
-	MaterialGroupInfo: { describe: '菜品搜索', api: 'material/onlinemarketTest/material/group_info' }
+	MaterialGroupInfo: { describe: '菜品搜索', api: 'material/onlinemarketTest/material/group_info' },
+
+	//订单详情
+	OrderGgetDdetail: { describe: '', api: 'onlinemarketTest/order/get_detail' }
 };
 
 export default Connector;

@@ -8,18 +8,18 @@
 		</div>
 		<div class="commit-items">
 			<ul>
-				<li class="flex_row" v-for="item of 10" :key="item">
+				<li class="flex_row" v-for="(index, item) in oderList" :key="item.onlineorderno" v-if="index <= showNum">
 					<img src="" alt="" />
 					<div class="flex_col item-detail">
 						<div class="flex_row detail-header">
-							<p>产品名称产品名称</p>
+							<p>{{ item.materialname }}</p>
 							<div class="item-price">
 								<span>¥</span>
-								<span>15</span>
+								<span>{{}}</span>
 							</div>
 						</div>
 						<p class="item-describe">描述介绍描述介绍描述</p>
-						<p class="item-num">x1</p>
+						<p class="item-num">x{{ item.ordernumber }}</p>
 					</div>
 				</li>
 			</ul>
@@ -37,24 +37,39 @@
 				<div class="flex_row total-calculate-read">
 					<span>小计</span>
 					<span>¥</span>
-					<span>544</span>
+					<span>{{ item.chargetotal }}</span>
 				</div>
 			</div>
 		</div>
 	</div>
 </template>
 <script>
+import HttpService from '../../utils/http';
+
 export default {
 	data() {
 		return {
-			showMore: false
+			showMore: false,
+			oderList: {},
+			showNum: 3 // 基础显示数量
 		};
+	},
+	props: {
+		searchParams: Object
+	},
+	created() {
+		HttpService.orderGgetDdetail(5129, this.searchParams.searchParams.rooid, this.searchParams.onlineorderno).then((res) => {
+			this.oderList = res;
+		});
 	},
 	methods: {
 		toggleShowMore() {
 			this.showMore = !this.showMore;
 			if (this.showMore) {
 				//
+				this.showNum = this.oderList.length;
+			} else {
+				this.showNum = 3;
 			}
 		}
 	}

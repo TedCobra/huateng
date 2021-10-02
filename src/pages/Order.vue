@@ -141,7 +141,7 @@ export default {
 	},
 	created() {
 		// 获取左边列表
-		HttpService.materialSort(5129, 31).then((res) => {
+		HttpService.materialSort(5129, 2).then((res) => {
 			this.tyleList = res;
 		});
 		// 获取热卖
@@ -174,7 +174,11 @@ export default {
 			}
 		},
 		// 搜索
-		searchEvent() {},
+		searchEvent() {
+			HttpService.MaterialSearch(5129, 2).then((res) => {
+				this.tyleList = res;
+			});
+		},
 
 		// 限制输入特殊字符
 		btKeyUp(e) {
