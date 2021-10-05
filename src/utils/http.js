@@ -45,7 +45,7 @@ const Post = (portDetails, params) => {
 	return new Promise((resolve, reject) => {
 		INSTANCE.post(portDetails.api, params)
 			.then((res) => {
-				if (!res.err_code) return resolve(res.data);
+				if (!res.err_code) return resolve(res);
 				console.log(`${portDetails.describe}: ${res.err_msg}`);
 			})
 			.catch((error) => {

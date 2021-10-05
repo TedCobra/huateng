@@ -27,8 +27,8 @@ export default {
 	created() {
 		HttpService.MemberSharingRewards(5129, this.$store.state.membershipCardDetails.gradeid).then((res) => {
 			console.log(res);
-			this.commpanyName = res.company_name;
-			this.myReward = res.myreward;
+			this.commpanyName = res.data.company_name;
+			this.myReward = res.data.myreward;
 		});
 	}
 };

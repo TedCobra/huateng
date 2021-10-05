@@ -16,7 +16,7 @@
 					<img src="../assets/images/time_grey.png" />
 					{{ MerchantDetails.remark }}
 				</p>
-				<button @click="jumpPage('reserveMyAppointment', {})">我的预约</button>
+				<button @click="jumpPage('reserveMyAppointment', { parent_id: MerchantDetails.parent_id })">我的预约</button>
 			</div>
 			<div class="flex_row address">
 				<div class="flex_row">
@@ -216,11 +216,11 @@ export default {
 	},
 	created() {
 		HttpService.MerchantDetails(5129, 1231).then((res) => {
-			this.MerchantDetails = res;
+			this.MerchantDetails = res.data;
 		});
 
 		HttpService.AvailableRoomTypes(5129).then((res) => {
-			this.availableRoomTypes = res;
+			this.availableRoomTypes = res.data;
 		});
 	},
 	mounted() {
@@ -234,7 +234,7 @@ export default {
 			if (this.orderParams.selectDate && this.orderParams.selectRoomType) {
 				let date = yearMonthDay(this.orderParams.selectDate);
 				HttpService.BuyoutPlan(5129, this.orderParams.selectRoomType, date).then((res) => {
-					res.some((item) => {
+					res.data.some((item) => {
 						let endHour = Number(item.endtime.split(':')[0]);
 						let beginHour = Number(item.begintime.split(':')[0]);
 						// 计算时间差

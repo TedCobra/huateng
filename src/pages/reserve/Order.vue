@@ -143,7 +143,7 @@ export default {
 		};
 	},
 	created() {
-		console.log(this.params);
+		console.log(this.$route.params);
 
 		if (Object.keys(this.$route.params).length) {
 			this.params = this.$route.params;
@@ -152,7 +152,7 @@ export default {
 			// 酒水套餐
 			HttpService.BookADrinkPlan(5129, this.params.selectRoomType, this.params.scheduledPlan, 1, this.params.selectDate).then(
 				(res) => {
-					this.drinkPackage = res;
+					this.drinkPackage = res.data;
 				}
 			);
 			return;
