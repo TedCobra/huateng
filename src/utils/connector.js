@@ -8,6 +8,9 @@ const Connector = {
 	// 会员优惠券
 	MemberCoupon: { describe: '会员优惠券', api: 'memberserverminiTest/customer/v1/coupon_list' },
 
+	// 领取优惠券
+	GetCoupons: { describe: '领取优惠券', api: 'memberserverminiTest/customer/v1/getcoupon' },
+
 	// 可预定房型
 	AvailableRoomTypes: { describe: '可预定房型', api: 'reserveServiceTest/mini/booking/roomsortlist' },
 

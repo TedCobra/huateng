@@ -5,9 +5,25 @@
 			<MembershipCard :membershipCardDetails="$store.state.membershipCardDetails" :routeName="'memberQRCode'" />
 
 			<ul class="flex_row text_center">
-				<li v-for="(item, index) of memberTotal" :key="index" @click="jumpPage(item.routeName)">
-					<p>{{ item.name }}</p>
-					<p>{{ item.amount }}</p>
+				<li>
+					<p>余额</p>
+					<p>{{ $store.state.membershipCardDetails.ye }}</p>
+				</li>
+				<li>
+					<p>积分</p>
+					<p>{{ $store.state.membershipCardDetails.cardintegral }}</p>
+				</li>
+				<li>
+					<p>本金</p>
+					<p>{{ $store.state.membershipCardDetails.bjye }}</p>
+				</li>
+				<li>
+					<p>赠送</p>
+					<p>{{ $store.state.membershipCardDetails.zsye }}</p>
+				</li>
+				<li @click="jumpPage('memberRebate')">
+					<p>返利</p>
+					<p>{{ $store.state.membershipCardDetails.flye }}</p>
 				</li>
 			</ul>
 		</div>
@@ -50,6 +66,8 @@
 <script>
 import MembershipCard from '../../components/MembershipCard.vue';
 import Tabbar from '../../components/Tabbar.vue';
+import HttpService from '../../utils/http';
+
 export default {
 	components: {
 		MembershipCard,
@@ -57,13 +75,6 @@ export default {
 	},
 	data() {
 		return {
-			memberTotal: [
-				{ name: '余额', amount: 0 },
-				{ name: '积分', amount: 0 },
-				{ name: '本金', amount: 0 },
-				{ name: '赠送', amount: 0 },
-				{ name: '返利', amount: 0, routeName: 'memberRebate' }
-			],
 			service: [
 				{ name: '分享领福利', icon: 'welfare', routeName: 'memberWelfare' },
 				{
@@ -99,7 +110,13 @@ export default {
 	created() {
 		// 判断路由是否携带会员卡参数，储存对应数据
 		if (this.$route.params.membershipCardDetails) {
-			this.$store.commit('updateMembershipCardDetails', this.$route.params.membershipCardDetails);
+			HttpService.MembershipCardDetails(
+				'oqqkJ42kASZQAWWE3nbJuYk6wYp8',
+				this.$route.params.membershipCardDetails.company_id,
+				this.$route.params.membershipCardDetails.id
+			).then((res) => {
+				this.$store.commit('updateMembershipCardDetails', res.data);
+			});
 		}
 	},
 	methods: {
