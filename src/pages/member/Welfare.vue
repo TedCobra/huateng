@@ -1,20 +1,35 @@
 <template>
 	<div class="welfare">
 		<!-- 标题 -->
-		<h1>分享领福利</h1>
+		<h1>{{ commpanyName }}</h1>
 		<h2>现金/积分/酒水领不停</h2>
 
 		<!-- 分享规则 -->
 		<div>
 			<h2>分享规则</h2>
-			<p>返利金额：50元/人</p>
-			<p>赠送积分：0积分</p>
-			<p>分享限制(人数/周期)：0人/年</p>
-			<p>奖励物品：雪花啤酒x12、雪花啤酒x12、雪花啤酒x12、雪花啤酒x12</p>
-			<p>奖励优惠劵：某某X1、某某X1</p>
+			<p>{{ myReward }}</p>
 		</div>
 
 		<!-- 分享按钮 -->
 		<button>立即分享</button>
 	</div>
 </template>
+
+<script>
+import HttpService from '../../utils/http';
+export default {
+	data() {
+		return {
+			commpanyName: '',
+			myReward: ''
+		};
+	},
+	created() {
+		HttpService.MemberSharingRewards(5129, this.$store.state.membershipCardDetails.gradeid).then((res) => {
+			console.log(res);
+			this.commpanyName = res.company_name;
+			this.myReward = res.myreward;
+		});
+	}
+};
+</script>

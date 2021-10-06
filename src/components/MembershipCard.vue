@@ -1,6 +1,8 @@
 <template>
-	<div class="membership_card" @click="jumpPage">
-		<img src="../assets/images/card_gold.png" />
+	<div class="member_ship_card" @click="jumpPage">
+		<!-- 背景图 -->
+		<img :src="membershipCardDetails.imageurl ? membershipCardDetails.imageurl : require('../assets/images/card_gold.png')" />
+		<!-- 会员详情 -->
 		<div>
 			<h4>{{ membershipCardDetails.gradename }}</h4>
 			<p>members</p>

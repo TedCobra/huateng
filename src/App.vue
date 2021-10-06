@@ -29,14 +29,21 @@ export default {
 		}
 	},
 	created() {
-		// 添加键盘监听
+		// 键盘监听
 		window.addEventListener('focusin', this.fixedBodyHeight);
 		window.addEventListener('focusout', this.reductionBodyHeight);
+		// 刷新监听
+		window.addEventListener('beforeunload', this.storingData);
+		// 获取缓存数据更新至store
+		let store = sessionStorage.getItem('STORE');
+		if (store) this.$store.replaceState(JSON.parse(store));
 	},
 	beforeDestroy() {
 		// 移除键盘监听
 		window.removeEventListener('focusin', this.fixedBodyHeight);
 		window.removeEventListener('focusout', this.reductionBodyHeight);
+		// 移除刷新监听
+		window.removeEventListener('beforeunload', this.storingData);
 	},
 	methods: {
 		fixedBodyHeight() {
@@ -46,6 +53,10 @@ export default {
 			if (this.routerNameConfig.indexOf(this.$route.name) === -1) {
 				this.fixedHeight = '100%';
 			}
+		},
+		// 刷新前储存store数据至session
+		storingData() {
+			sessionStorage.setItem('STORE', JSON.stringify(this.$store.state));
 		}
 	}
 };
