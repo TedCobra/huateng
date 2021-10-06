@@ -93,6 +93,10 @@ export default {
 		HttpService.CouponList(5129, 31).then((res) => {
 			this.coupon = res.data;
 		});
+
+		HttpService.MerchantDetails(5129, 1231).then((res) => {
+			this.$store.commit('updateMerchantDetails', res.data);
+		});
 	},
 	methods: {
 		jumpPage(routeName) {

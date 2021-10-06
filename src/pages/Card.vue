@@ -2,7 +2,7 @@
 	<div class="card">
 		<div class="flex_row store">
 			<div @click="jumpPage('cardPhone')">
-				华腾易达
+				{{ $store.state.merchantDetails.company_name }}
 				<div>当前门店</div>
 			</div>
 			<button>

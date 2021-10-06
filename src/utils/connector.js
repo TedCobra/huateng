@@ -5,6 +5,9 @@ const Connector = {
 	// 优惠券详情
 	CouponDetails: { describe: '优惠券详情', api: 'onlinemarketTest/coupon/detail' },
 
+	// 会员优惠券
+	MemberCoupon: { describe: '会员优惠券', api: 'memberserverminiTest/customer/v1/coupon_list' },
+
 	// 可预定房型
 	AvailableRoomTypes: { describe: '可预定房型', api: 'reserveServiceTest/mini/booking/roomsortlist' },
 
@@ -24,6 +27,12 @@ const Connector = {
 	MerchantDetails: {
 		describe: '商家详情',
 		api: 'memberserverminiTest/WxCompany/company_page'
+	},
+
+	// 会员卡详情
+	MembershipCardDetails: {
+		describe: '会员卡详情',
+		api: 'memberserverminiTest/WxCustomer/detail'
 	},
 
 	// 会员建卡

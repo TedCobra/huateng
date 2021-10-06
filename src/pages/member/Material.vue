@@ -22,3 +22,19 @@
 		</div>
 	</div>
 </template>
+
+<script>
+import HttpService from '../../utils/http';
+
+export default {
+	created() {
+		HttpService.MembershipCardDetails(
+			this.$store.state.membershipCardDetails.company_id,
+			this.$store.state.membershipCardDetails.id,
+			'oqqkJ42kASZQAWWE3nbJuYk6wYp8'
+		).then((res) => {
+			console.log(res.data);
+		});
+	}
+};
+</script>

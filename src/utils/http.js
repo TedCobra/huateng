@@ -85,6 +85,28 @@ const HttpService = {
 	},
 	/**
 	 *
+	 * @param {会员ID} guestid
+	 * @param {品牌编号 number} parent_id
+	 * @param {商家编号 number} company_id
+	 * @param {状态 array[1已使用 2已过期 3占用中 4停用]} flaglist
+	 * @param {分页索引 number} page
+	 * @param {条数 number} page_size
+	 * @returns
+	 */
+	// scene 场景类型 1在线预订 2在线超市 3会员卡充值 4场内管理系统
+	// use_type 使用类型 1房费可用 2酒水可用
+	MemberCoupon: (guestid, parent_id, company_id, flaglist, page, page_size) => {
+		return Post(Connector.MemberCoupon, {
+			guestid: guestid,
+			parent_id: parent_id,
+			company_id: company_id,
+			flaglist: flaglist,
+			page: page,
+			page_size: page_size
+		});
+	},
+	/**
+	 *
 	 * @param {商家编号 number} company_id
 	 * @param {微信或支付宝对应用户id} uniondid
 	 * @returns
@@ -93,6 +115,20 @@ const HttpService = {
 		return Post(Connector.MerchantDetails, {
 			company_id: company_id,
 			uniondid: uniondid
+		});
+	},
+	/**
+	 *
+	 * @param {会员ID} openid
+	 * @param {商家编号 number} company_id
+	 * @param {会员ID} customerid
+	 * @returns
+	 */
+	MembershipCardDetails: (openid, company_id, customerid) => {
+		return Post(Connector.MembershipCardDetails, {
+			openid: openid,
+			company_id: company_id,
+			customerid: customerid
 		});
 	},
 	/**
@@ -125,7 +161,7 @@ const HttpService = {
 	 * @param {商家编号 number} company_id
 	 * @param {会员ID} openid
 	 * @param {分页索引 number} page
-	 * @param {页数 number} page_size
+	 * @param {条数 number} page_size
 	 * @returns
 	 */
 	// begindatetime || enddatetime
