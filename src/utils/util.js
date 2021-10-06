@@ -17,12 +17,17 @@ const getUrlParam = (key) => {
 };
 
 // 时间戳转年月日
-const YearMonthDay = (timeStamp) => {
+const yearMonthDay = (timeStamp) => {
 	let date = new Date(timeStamp);
 	let year = date.getFullYear();
-	let month = date.getMonth() + 1;
-	let day = date.getDate();
+	let month = fullZero(date.getMonth() + 1);
+	let day = fullZero(date.getDate());
 	return `${year}-${month}-${day}`;
 };
 
-export { limitNumber, verifyPhone, getUrlParam, YearMonthDay };
+// 未满10补0
+const fullZero = (num) => {
+	return num > 9 ? num : `0${num}`;
+};
+
+export { limitNumber, verifyPhone, getUrlParam, yearMonthDay, fullZero };

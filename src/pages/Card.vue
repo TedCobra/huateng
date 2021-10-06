@@ -31,7 +31,7 @@ export default {
 	},
 	created() {
 		HttpService.UserTiedCardList('oqqkJ42kASZQAWWE3nbJuYk6wYp8', 5129).then((res) => {
-			this.membershipCardList = res;
+			this.membershipCardList = res.data;
 		});
 	},
 	methods: {

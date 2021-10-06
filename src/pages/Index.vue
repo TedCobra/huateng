@@ -91,7 +91,7 @@ export default {
 	},
 	created() {
 		HttpService.CouponList(5129, 31).then((res) => {
-			this.coupon = res;
+			this.coupon = res.data;
 		});
 	},
 	methods: {

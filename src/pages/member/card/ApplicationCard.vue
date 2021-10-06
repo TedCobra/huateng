@@ -4,7 +4,7 @@
 		<ul>
 			<li v-for="item of 2" :key="item" class="flex_row" @click="selectCard = item">
 				<div :class="{ active: selectCard === item }">
-					<img v-show="selectCard === item" src="../../../assets/images/right_white.png" />
+					<img src="../../../assets/images/right_white.png" />
 				</div>
 				<div>
 					<div class="flex_row membership_card">
