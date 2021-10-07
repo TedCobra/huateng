@@ -30,7 +30,7 @@ const Connector = {
 	MembershipCard: { describe: '会员建卡', api: 'memberserverminiTest/WxCustomer/create' },
 
 	//菜单类型列表
-	MaterialSort: { describe: '菜单类型列表', api: 'onlinemarketTest/material/get_sort' },
+	MaterialSort: { describe: '菜单类型列表', api: 'material/get_sort' },
 
 	//菜品搜索
 	MaterialSearch: { describe: '菜品搜索', api: 'onlinemarketTest/material/search' },

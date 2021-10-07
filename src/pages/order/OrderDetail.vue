@@ -8,7 +8,7 @@
 		</div>
 		<div class="commit-items">
 			<ul>
-				<li class="flex_row" v-for="(index, item) in oderList" :key="item.onlineorderno" v-if="index <= showNum">
+				<li class="flex_row" v-for="(index, item) in oderList" :key="item.onlineorderno">
 					<img src="" alt="" />
 					<div class="flex_col item-detail">
 						<div class="flex_row detail-header">
@@ -55,7 +55,10 @@ export default {
 		};
 	},
 	props: {
-		searchParams: Object
+		searchParams: Object,
+		default: () => {
+			return {};
+		}
 	},
 	created() {
 		HttpService.orderGgetDdetail(5129, this.searchParams.searchParams.rooid, this.searchParams.onlineorderno).then((res) => {

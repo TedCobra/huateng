@@ -89,7 +89,13 @@ export default {
 			coupon: [] // 优惠券列表
 		};
 	},
+	mounted() {},
 	created() {
+		console.log('his.$store.state.companyId', this.$store.state.companyId);
+		// 获取商家信息
+		HttpService.MerchantDetails(this.$store.state.companyId, this.$store.state.uniondid).then((res) => {
+			this.$store.commit('updateCompanyDetails', res.data);
+		});
 		HttpService.CouponList(5129, 31).then((res) => {
 			this.coupon = res.data;
 		});

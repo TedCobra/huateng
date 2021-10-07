@@ -8,7 +8,7 @@
 			<p class="shop-notice">公告：欢迎光临XXXX，感谢新老客户长久以来对本店支持对本店支持对本店支持</p>
 			<div class="flex_row table-num">
 				<button>台号：128</button>
-				<button @click="$router.push({ name: 'orderDetail' })">查看账单</button>
+				<button @click="$router.push({ name: 'orderDetail'})">查看账单</button>
 			</div>
 		</div>
 		<div class="flex_row order-search">
