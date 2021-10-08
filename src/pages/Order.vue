@@ -188,6 +188,19 @@ export default {
 				/[`~!@#$%^&*()_\-+=<>?:"{}|,.\/;'\\[\]·~！@#￥%……&*（）——\-+={}|《》？：“”【】、；‘’，。、]/g,
 				''
 			);
+		},
+		// 获取购物车信息
+		getShopList() {
+			HttpService.Shoppingcart(
+				this.$store.state.companyId,
+				this.$store.state.uniondid,
+				this.$store.state.membershipCardDetails.id,
+				this.$store.state.roomid,
+				this.$store.state.openbarcheckoutid
+			).then((res) => {
+				this.shopList = res.data.orderlist;
+				this.allData = res.data;
+			});
 		}
 	}
 };
