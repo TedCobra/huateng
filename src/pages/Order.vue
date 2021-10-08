@@ -32,7 +32,7 @@
 						<p>热门酒水</p>
 					</li>
 					<li
-						v-for="(item, index) in tyleList"
+						v-for="(item, index) in typeList"
 						:key="index"
 						:class="['flex_row', { selectd: typeChoose === index }]"
 						@click="typeClick(index, item)"
@@ -106,7 +106,7 @@ export default {
 				num: 9
 			},
 			typeChoose: -1,
-			tyleList: [
+			typeList: [
 				{
 					fathermenusortid: 1,
 					menusortname: '李宰旭',
@@ -142,11 +142,11 @@ export default {
 	created() {
 		// 获取左边列表
 		HttpService.materialSort(5129, 2).then((res) => {
-			this.tyleList = res.data;
+			this.typeList = res.data;
 		});
 		// 获取热卖
 		HttpService.materialHot(this.$store.state.merchantDetails.id).then((res) => {
-			this.tyleList = res.data;
+			this.typeList = res.data;
 		});
 		this.getShopList();
 	},
@@ -168,7 +168,6 @@ export default {
 			this.ishowCards = false;
 		},
 		typeClick(index, item) {
-			console.log('====index', index);
 			this.typeChoose = index;
 			if (item) {
 				//
@@ -176,8 +175,8 @@ export default {
 		},
 		// 搜索
 		searchEvent() {
-			HttpService.MaterialSearch(5129, 2).then((res) => {
-				this.tyleList = res;
+			HttpService.MaterialSearch(this.$store.state.companyId, this.searchValue).then((res) => {
+				this.typeList = res;
 			});
 		},
 
