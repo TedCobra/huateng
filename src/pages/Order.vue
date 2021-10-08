@@ -2,13 +2,13 @@
 	<div class="order-container">
 		<div class="flex_col order-top">
 			<div class="flex_row shop-name">
-				<p>店名店名店名店名店名店名</p>
+				<p>{{ $store.state.merchantDetails.company_name }}</p>
 				<img src="../assets/images/order_vector.png" alt="" @click="openCards" />
 			</div>
-			<p class="shop-notice">公告：欢迎光临XXXX，感谢新老客户长久以来对本店支持对本店支持对本店支持</p>
+			<p class="shop-notice">公告：欢迎光临{{ $store.state.merchantDetails.company_name }}，感谢新老客户长久以来对本店支持</p>
 			<div class="flex_row table-num">
 				<button>台号：128</button>
-				<button @click="$router.push({ name: 'orderDetail'})">查看账单</button>
+				<button @click="$router.push({ name: 'orderDetail' })">查看账单</button>
 			</div>
 		</div>
 		<div class="flex_row order-search">
@@ -142,12 +142,13 @@ export default {
 	created() {
 		// 获取左边列表
 		HttpService.materialSort(5129, 2).then((res) => {
-			this.tyleList = res;
+			this.tyleList = res.data;
 		});
 		// 获取热卖
-		HttpService.materialHot(5129, 31).then((res) => {
-			this.tyleList = res;
+		HttpService.materialHot(this.$store.state.merchantDetails.id).then((res) => {
+			this.tyleList = res.data;
 		});
+		this.getShopList();
 	},
 	methods: {
 		choosedEvent() {

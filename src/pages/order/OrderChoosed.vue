@@ -42,6 +42,8 @@
 	</div>
 </template>
 <script>
+import HttpService from '../../utils/http';
+
 export default {
 	components: {},
 	props: {
@@ -58,9 +60,47 @@ export default {
 			}
 		}
 	},
+	data() {
+		return {
+			shopList: [], // 购物车列表
+			shopDetail: {} // 返回的数据
+		};
+	},
+	created() {
+		this.shopDetail = this.$store.state.shopDetail;
+		this.shopList = this.$store.state.orderlist;
+	},
 	methods: {
 		close() {
 			this.$emit('choosedEvent');
+		},
+
+		// 添加
+		add(item) {
+			let orderlist = [];
+			orderlist.push(item);
+			HttpService.Addtocart(
+				this.$store.state.companyId,
+				this.$store.state.uniondid,
+				this.$store.state.membershipCardDetails.id,
+				this.$store.state.roomid,
+				orderlist
+			).then((res) => {
+				res && this.$$emit('updateShopDetail');
+			});
+		},
+		// 删除
+		del(item) {
+			HttpService.Addtocart(
+				this.$store.state.companyId,
+				this.$store.state.membershipCardDetails.id,
+				this.$store.state.roomid,
+				item.materialid,
+				item.materialunitid,
+				-1
+			).then((res) => {
+				res && this.$$emit('updateShopDetail');
+			});
 		}
 	}
 };

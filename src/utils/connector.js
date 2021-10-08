@@ -5,6 +5,12 @@ const Connector = {
 	// 优惠券详情
 	CouponDetails: { describe: '优惠券详情', api: 'onlinemarketTest/coupon/detail' },
 
+	// 会员优惠券
+	MemberCoupon: { describe: '会员优惠券', api: 'memberserverminiTest/customer/v1/coupon_list' },
+
+	// 领取优惠券
+	GetCoupons: { describe: '领取优惠券', api: 'memberserverminiTest/customer/v1/getcoupon' },
+
 	// 可预定房型
 	AvailableRoomTypes: { describe: '可预定房型', api: 'reserveServiceTest/mini/booking/roomsortlist' },
 
@@ -26,11 +32,17 @@ const Connector = {
 		api: 'memberserverminiTest/WxCompany/company_page'
 	},
 
+	// 会员卡详情
+	MembershipCardDetails: {
+		describe: '会员卡详情',
+		api: 'memberserverminiTest/WxCustomer/detail'
+	},
+
 	// 会员建卡
 	MembershipCard: { describe: '会员建卡', api: 'memberserverminiTest/WxCustomer/create' },
 
 	//菜单类型列表
-	MaterialSort: { describe: '菜单类型列表', api: 'material/get_sort' },
+	MaterialSort: { describe: '菜单类型列表', api: 'onlinemarketTest/material/get_sort' },
 
 	//菜品搜索
 	MaterialSearch: { describe: '菜品搜索', api: 'onlinemarketTest/material/search' },
@@ -44,7 +56,16 @@ const Connector = {
 	//订单详情
 	OrderGgetDdetail: { describe: '', api: 'onlinemarketTest/order/get_detail' },
 	// 会员分享奖励
-	MemberSharingRewards: { describe: '会员分享奖励', api: 'memberserverminiTest//Membersharerule/wechat_rulelist' }
+	MemberSharingRewards: { describe: '会员分享奖励', api: 'memberserverminiTest//Membersharerule/wechat_rulelist' },
+
+	// 获取购物车
+	Shoppingcart: { describe: '获取购物车', api: 'onlinemarketTest/shoppingcart/getinfo' },
+
+	// 添加购物车
+	Addtocart: { describe: '添加购物车', api: 'onlinemarketTest/shoppingcart/addtocart' },
+
+	// 删减购物车
+	Removefromcart: { describe: '添加购物车', api: 'onlinemarketTest/shoppingcart/removefromcart' }
 };
 
 export default Connector;

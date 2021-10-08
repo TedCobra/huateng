@@ -4,7 +4,7 @@
 
 		<div class="common_box middle bar_details">
 			<div class="flex_row title">
-				<h4>{{ MerchantDetails.company_name }}</h4>
+				<h4>{{ $store.state.merchantDetails.company_name }}</h4>
 				<div class="text_center">{{ distance }}km</div>
 			</div>
 			<div class="flex_row score">
@@ -14,14 +14,14 @@
 			<div class="flex_row opening">
 				<p>
 					<img src="../assets/images/time_grey.png" />
-					{{ MerchantDetails.remark }}
+					{{ $store.state.merchantDetails.remark }}
 				</p>
-				<button @click="jumpPage('reserveMyAppointment', { parent_id: MerchantDetails.parent_id })">我的预约</button>
+				<button @click="jumpPage('reserveMyAppointment', { parent_id: $store.state.merchantDetails.parent_id })">我的预约</button>
 			</div>
 			<div class="flex_row address">
 				<div class="flex_row">
 					<img src="../assets/images/location_grey.png" />
-					{{ MerchantDetails.company_addr }}
+					{{ $store.state.merchantDetails.company_addr }}
 					<img src="../assets/images/arrow_grey.png" />
 				</div>
 				<img src="../assets/images/tel_grey.png" />
@@ -160,7 +160,6 @@ export default {
 	},
 	data() {
 		return {
-			MerchantDetails: {}, // 商户详情
 			distance: 0, // 用户距离
 			score: 5, // 商户评分
 			isDate: false, // 日期选择弹窗
@@ -215,10 +214,6 @@ export default {
 		}
 	},
 	created() {
-		HttpService.MerchantDetails(5129, 1231).then((res) => {
-			this.MerchantDetails = res.data;
-		});
-
 		HttpService.AvailableRoomTypes(5129).then((res) => {
 			this.availableRoomTypes = res.data;
 		});
@@ -234,13 +229,14 @@ export default {
 			if (this.orderParams.selectDate && this.orderParams.selectRoomType) {
 				let date = yearMonthDay(this.orderParams.selectDate);
 				HttpService.BuyoutPlan(5129, this.orderParams.selectRoomType, date).then((res) => {
+					console.log(res);
 					res.data.some((item) => {
 						let endHour = Number(item.endtime.split(':')[0]);
 						let beginHour = Number(item.begintime.split(':')[0]);
 						// 计算时间差
 						item.timeDiffrence = endHour > beginHour ? endHour - beginHour : 24 - beginHour + endHour;
 					});
-					this.buyoutPlans = res;
+					this.buyoutPlans = res.data;
 				});
 			}
 		},
