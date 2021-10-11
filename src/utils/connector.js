@@ -2,6 +2,9 @@ const Connector = {
 	// 判断是否是会员
 	IsMember: { describe: '会员判断', api: 'memberserverminiTest/WxCustomer/isMember' },
 
+	// 系统时间
+	SystemTime: { describe: '系统时间', api: 'memberserverminiTest/WxCompany/server_time' },
+
 	// 优惠券列表
 	CouponList: { describe: '优惠券列表', api: 'warehouseTest/CouponEvent/couponlist' },
 
@@ -41,8 +44,14 @@ const Connector = {
 		api: 'memberserverminiTest/WxCustomer/detail'
 	},
 
+	// 会员卡选项列表
+	MembershipCardOptions: { describe: '会员卡选项列表', api: 'memberserverTest/WxMembergrade/list' },
+
 	// 会员建卡
 	MembershipCard: { describe: '会员建卡', api: 'memberserverminiTest/WxCustomer/create' },
+
+	// 绑定实体卡
+	BindPhysicalCard: { describe: '绑定实体卡', api: 'memberserverminiTest/WxCustomer/bind' },
 
 	//菜单类型列表
 	MaterialSort: { describe: '菜单类型列表', api: 'onlinemarketTest/material/get_sort' },

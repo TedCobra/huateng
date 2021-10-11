@@ -12,7 +12,12 @@
 		</div>
 
 		<!-- 列表 -->
-		<MembershipCard v-for="item of membershipCardList" :key="item.id" :membershipCardDetails="item" :routeName="'member'" />
+		<MembershipCard
+			v-for="item of membershipCardList"
+			:key="`${item.company_id}${item.id}`"
+			:membershipCardDetails="item"
+			:routeName="'member'"
+		/>
 
 		<!-- footer -->
 		<Tabbar />

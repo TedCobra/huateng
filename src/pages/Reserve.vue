@@ -160,6 +160,7 @@ export default {
 	},
 	data() {
 		return {
+			systemTime: null, // 系统时间
 			distance: 0, // 用户距离
 			score: 5, // 商户评分
 			isDate: false, // 日期选择弹窗
@@ -187,15 +188,15 @@ export default {
 	computed: {
 		// 最小时间限制
 		minDate() {
-			return new Date();
+			return new Date(this.systemTime);
 		},
 		// 最大时间限制
 		maxDate() {
-			return new Date(new Date().getTime() + 13 * 24 * 3600 * 1000);
+			return new Date(new Date(this.systemTime).getTime() + 13 * 24 * 3600 * 1000);
 		},
 		// 向后推十四天
 		selectArray() {
-			let date = new Date();
+			let date = new Date(this.systemTime);
 			// 时间归yyyy-mm-dd 00:00:00
 			date = new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0);
 			let weekArray = ['日', '一', '二', '三', '四', '五', '六'];
@@ -214,6 +215,11 @@ export default {
 		}
 	},
 	created() {
+		HttpService.SystemTime(this.$store.state.membershipCardDetails.company_id, 'oqqkJ42kASZQAWWE3nbJuYk6wYp8').then((res) => {
+			console.log(res);
+			this.systemTime = res.data;
+		});
+
 		HttpService.AvailableRoomTypes(this.$store.state.membershipCardDetails.company_id).then((res) => {
 			this.availableRoomTypes = res.data;
 		});

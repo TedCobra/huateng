@@ -58,6 +58,19 @@ const Post = (portDetails, params) => {
 // 接口
 const HttpService = {
 	/**
+	 * 系统时间
+	 * @param {商家编号} company_id
+	 * @param {会员ID} openid
+	 * @returns
+	 */
+	SystemTime: (company_id, openid) => {
+		return Post(Connector.SystemTime, {
+			company_id: company_id,
+			openid: openid
+		});
+	},
+
+	/**
 	 * 判断是否会员
 	 * @param {会员ID} openid
 	 * @param {商家编号} company_id
@@ -106,10 +119,10 @@ const HttpService = {
 	 * @param {状态 array[1已使用 2已过期 3占用中 4停用]} flaglist
 	 * @param {分页索引 number} page
 	 * @param {条数 number} page_size
+	 * @param {? 场景类型 1在线预订 2在线超市 3会员卡充值 4场内管理系统} scene
+	 * @param {? 使用类型 1房费可用 2酒水可用} use_type
 	 * @returns
 	 */
-	// scene 场景类型 1在线预订 2在线超市 3会员卡充值 4场内管理系统
-	// use_type 使用类型 1房费可用 2酒水可用
 	MemberCoupon: (guestid, parent_id, company_id, flaglist, page, page_size) => {
 		return Post(Connector.MemberCoupon, {
 			guestid: guestid,
@@ -314,6 +327,22 @@ const HttpService = {
 			onlineorderno: onlineorderno
 		});
 	},
+
+	/**
+	 * 会员卡选项列表
+	 * @param {商家编号 number} company_id
+	 * @param {类型 1有 2无} type
+	 * @param {分享人ID} shareguid
+	 * @returns
+	 */
+	MembershipCardOptions: (company_id, type, shareguid) => {
+		return Post(Connector.MembershipCardOptions, {
+			company_id: company_id,
+			type: type,
+			shareguid: shareguid || ''
+		});
+	},
+
 	/**
 	 *
 	 * @param {商家编号 number} company_id
@@ -338,6 +367,27 @@ const HttpService = {
 			shareguid: shareguid
 		});
 	},
+
+	/**
+	 *
+	 * @param {会员ID} openid
+	 * @param {商家编号} company_id
+	 * @param {手机号码} telephone
+	 * @param {内部会员ID} customerid
+	 * @param {验证码} code
+	 * @returns
+	 */
+	BindPhysicalCard: (openid, company_id, telephone, customerid, code) => {
+		return Post(Connector.BindPhysicalCard, {
+			openid: openid,
+			company_id: company_id,
+			telephone: telephone,
+			customerid: customerid,
+			code: code,
+			form_id: ''
+		});
+	},
+
 	/**
 	 *
 	 * @param {商家编号 number} company_id

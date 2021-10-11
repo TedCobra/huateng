@@ -29,13 +29,13 @@ export default {
 				},
 				{
 					label: '客服电话',
-					sub: '这个商家太懒了，未填写客服电话',
+					sub: this.$store.state.merchantDetails.company_phone,
 					icon: 'tel_black',
 					className: 'blue'
 				},
 				{
 					label: '商家地址',
-					sub: '深圳市福田区深南大道6031',
+					sub: this.$store.state.merchantDetails.company_addr,
 					icon: 'location_black',
 					className: 'purple'
 				}

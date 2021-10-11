@@ -1428,7 +1428,6 @@ body {
 							}
 						}
 						> .top_up {
-							justify-content: space-between;
 							margin-top: 10px;
 							> li {
 								@extend .text_center;
@@ -1443,6 +1442,9 @@ body {
 								overflow: hidden;
 								white-space: nowrap;
 								text-overflow: ellipsis;
+								&:not(:first-child) {
+									margin-left: 10px;
+								}
 								&.active {
 									border-color: #2e66f9;
 									color: #2e66f9;
@@ -1893,6 +1895,9 @@ body {
 		margin: 0 auto 30px;
 		background: #ffffff;
 		border-radius: 8px;
+		> img {
+			width: 100%;
+		}
 	}
 	> p {
 		font-size: 14px;
