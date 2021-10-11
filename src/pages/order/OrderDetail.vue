@@ -62,7 +62,7 @@ export default {
 	},
 	created() {
 		HttpService.orderGgetDdetail(5129, this.searchParams.searchParams.rooid, this.searchParams.onlineorderno).then((res) => {
-			this.oderList = res;
+			this.oderList = res.data;
 		});
 	},
 	methods: {

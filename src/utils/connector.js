@@ -48,13 +48,13 @@ const Connector = {
 	MaterialSearch: { describe: '菜品搜索', api: 'onlinemarketTest/material/search' },
 
 	//获取热卖商品套餐
-	MaterialHot: { describe: '菜品搜索', api: 'onlinemarketTest/material/hot_group' },
+	MaterialHot: { describe: '热卖商品套餐', api: 'onlinemarketTest/material/hot_group' },
 
 	// 获取套餐数据
-	MaterialGroupInfo: { describe: '菜品搜索', api: 'material/onlinemarketTest/material/group_info' },
+	MaterialGroupInfo: { describe: '套餐数据', api: 'material/onlinemarketTest/material/group_info' },
 
 	//订单详情
-	OrderGgetDdetail: { describe: '', api: 'onlinemarketTest/order/get_detail' },
+	OrderGgetDdetail: { describe: '订单详情', api: 'onlinemarketTest/order/get_detail' },
 	// 会员分享奖励
 	MemberSharingRewards: { describe: '会员分享奖励', api: 'memberserverminiTest//Membersharerule/wechat_rulelist' },
 
