@@ -3,7 +3,7 @@
 		<div class="flex_row store">
 			<div @click="jumpPage('cardPhone')">
 				{{ $store.state.merchantDetails.company_name }}
-				<div>当前门店</div>
+				<!-- <div>当前门店</div> -->
 			</div>
 			<button>
 				<img src="../assets/images/add_white.png" />
@@ -13,16 +13,21 @@
 
 		<!-- 列表 -->
 		<MembershipCard v-for="item of membershipCardList" :key="item.id" :membershipCardDetails="item" :routeName="'member'" />
+
+		<!-- footer -->
+		<Tabbar />
 	</div>
 </template>
 
 <script>
 import MembershipCard from '../components/MembershipCard.vue';
+import Tabbar from '../components/Tabbar.vue';
 import HttpService from '../utils/http';
 
 export default {
 	components: {
-		MembershipCard
+		MembershipCard,
+		Tabbar
 	},
 	data() {
 		return {

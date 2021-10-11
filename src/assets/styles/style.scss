@@ -507,6 +507,7 @@ body {
 	}
 }
 .card {
+	padding: 0 0 64px;
 	> .store {
 		justify-content: space-between;
 		align-items: center;
@@ -580,7 +581,7 @@ body {
 	}
 }
 .member {
-	padding: 0 0 64px;
+	padding: 0 0 15px;
 	> .club_card {
 		margin: 15px auto 0;
 		> ul {

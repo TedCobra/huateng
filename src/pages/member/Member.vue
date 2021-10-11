@@ -57,21 +57,16 @@
 				</li>
 			</ul>
 		</div>
-
-		<!-- footer -->
-		<Tabbar />
 	</div>
 </template>
 
 <script>
 import MembershipCard from '../../components/MembershipCard.vue';
-import Tabbar from '../../components/Tabbar.vue';
 import HttpService from '../../utils/http';
 
 export default {
 	components: {
-		MembershipCard,
-		Tabbar
+		MembershipCard
 	},
 	data() {
 		return {
@@ -85,9 +80,9 @@ export default {
 				{
 					name: '我要寄存',
 					icon: 'consign',
-					routeName: 'memberConsign'
+					routeName: 'accessDeposit'
 				},
-				{ name: '我的酒水', icon: 'drinks', routeName: 'memberDrinks' },
+				{ name: '我的酒水', icon: 'drinks', routeName: 'accessWithdraw' },
 				{ name: '我的奖励', icon: 'reward', routeName: 'memberReward' },
 				{
 					name: '我的优惠券',

@@ -35,7 +35,7 @@ export default {
 				{
 					name: '会员',
 					image: 'people',
-					routeName: 'member'
+					routeName: 'card'
 				},
 				{
 					image: 'add_blue'
