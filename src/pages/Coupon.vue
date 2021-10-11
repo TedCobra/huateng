@@ -27,7 +27,7 @@ export default {
 	},
 	created() {
 		// 商家ID，活动ID
-		HttpService.CouponList(this.$store.state.membershipCardDetails.company_id, 31).then((res) => {
+		HttpService.CouponList(5129, 31).then((res) => {
 			this.coupon = res.data;
 		});
 	}

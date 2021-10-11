@@ -90,15 +90,15 @@ export default {
 		};
 	},
 	created() {
-		HttpService.IsMember('oqqkJ42kASZQAWWE3nbJuYk6wYp8', this.$store.state.membershipCardDetails.company_id).then((res) => {
-			if (res.data) this.$store.commit('updateMemberGuestId', res.data);
-		});
-
-		HttpService.CouponList(this.$store.state.membershipCardDetails.company_id, 31).then((res) => {
+		HttpService.CouponList(5129, 31).then((res) => {
 			this.coupon = res.data;
 		});
 
-		HttpService.MerchantDetails(this.$store.state.membershipCardDetails.company_id, this.$store.state.uniondid).then((res) => {
+		HttpService.IsMember('oqqkJ42kASZQAWWE3nbJuYk6wYp8', 5129).then((res) => {
+			if (res.data) this.$store.commit('updateMemberGuestId', res.data);
+		});
+
+		HttpService.MerchantDetails(5129, this.$store.state.uniondid).then((res) => {
 			this.$store.commit('updateMerchantDetails', res.data);
 		});
 	},

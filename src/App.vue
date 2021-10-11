@@ -9,6 +9,7 @@
 
 <script>
 import Navigate from './components/Navgate.vue';
+
 export default {
 	components: {
 		Navigate

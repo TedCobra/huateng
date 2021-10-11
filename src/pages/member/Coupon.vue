@@ -57,7 +57,8 @@ export default {
 				HttpService.MemberCoupon(
 					this.$store.state.membershipCardDetails.guestid,
 					this.$store.state.merchantDetails.parent_id,
-					this.$store.state.membershipCardDetails.company_id[this.choice],
+					this.$store.state.membershipCardDetails.company_id,
+					[this.choice],
 					this.currentPage,
 					this.pageSize
 				).then((res) => {
