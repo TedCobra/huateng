@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "@better-scroll/core": "^2.4.2",
+    "@better-scroll/pull-down": "^2.4.2",
+    "@better-scroll/pull-up": "^2.4.2",
     "axios": "^0.21.4",
     "babel-polyfill": "^6.26.0",
     "compression-webpack-plugin": "5.0.1",

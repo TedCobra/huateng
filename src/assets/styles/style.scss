@@ -463,9 +463,9 @@ body {
 		}
 	}
 	> .coupon_list {
-		height: 100%;
+		height: calc(100% - 66px);
 		> .list {
-			height: calc(100% - 66px);
+			height: 100%;
 			overflow: hidden;
 			> ul {
 				> .common_row {
@@ -732,15 +732,18 @@ body {
 			> ul {
 				@extend .flex_row;
 				@extend .text_center;
-				justify-content: space-between;
 				flex-wrap: wrap;
 				> li {
 					width: 86px;
 					line-height: 32px;
 					margin-top: 20px;
+					margin-right: 20px;
 					font-size: 14px;
 					color: #6a6c78;
 					position: relative;
+					&:nth-child(3n) {
+						margin-right: 0;
+					}
 					&.active {
 						border-color: #2e66f9;
 						color: #2e66f9;
@@ -1491,6 +1494,28 @@ body {
 			border-radius: 20px;
 			font-size: 16px;
 			color: #ffffff;
+		}
+		> .van-dialog {
+			width: 345px;
+			background-color: transparent;
+			> .van-dialog__content {
+				> .card_details {
+					width: 345px;
+					min-height: 274px;
+					padding: 25px 45px;
+					background: #272935;
+					border-radius: 16px;
+					color: #ffffff;
+					> h3 {
+						@extend .text_center;
+						font-size: 18px;
+					}
+					> p {
+						margin: 15px auto 25px;
+						font-size: 12px;
+					}
+				}
+			}
 		}
 	}
 	> .tied_card {

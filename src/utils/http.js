@@ -177,6 +177,42 @@ const HttpService = {
 	},
 
 	/**
+	 * 充值优惠方案
+	 * @param {商家编号} company_id
+	 * @param {会员等级} gradeid
+	 * @returns
+	 */
+	RechargeOffer: (company_id, gradeid) => {
+		return Post(Connector.RechargeOffer, {
+			company_id: company_id,
+			gradeid: gradeid
+		});
+	},
+
+	/**
+	 * 会员充值
+	 * @param {类型 2会员建卡} type
+	 * @param {商家编号} company_id
+	 * @param {会员ID} openid
+	 * @param {会员信息查询返回ID} customerid
+	 * @param {充值方案ID} fullpresentschemeid
+	 * @param {固定充值方案ID} rechargefixschemeid
+	 * @param {会员信息查询返回ID} appid
+	 * @returns
+	 */
+	MemberRecharge: (type, company_id, openid, customerid, fullpresentschemeid, rechargefixschemeid, appid) => {
+		return Post(Connector.MemberRecharge, {
+			type: type,
+			company_id: company_id,
+			openid: openid,
+			customerid: customerid,
+			fullpresentschemeid: fullpresentschemeid,
+			rechargefixschemeid: rechargefixschemeid,
+			appid: appid
+		});
+	},
+
+	/**
 	 * 包厢类型
 	 * @param {商家编号 number} company_id
 	 * @returns

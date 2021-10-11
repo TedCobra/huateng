@@ -53,6 +53,12 @@ const Connector = {
 	// 绑定实体卡
 	BindPhysicalCard: { describe: '绑定实体卡', api: 'memberserverminiTest/WxCustomer/bind' },
 
+	// 充值优惠方案
+	RechargeOffer: { describe: '充值优惠', api: 'memberserverTest/WxMemberfullpresentrule/list' },
+
+	// 会员充值
+	MemberRecharge: { describe: '会员充值', api: 'memberserverminiTest/WxCustomer/create_order' },
+
 	//菜单类型列表
 	MaterialSort: { describe: '菜单类型列表', api: 'onlinemarketTest/material/get_sort' },
 

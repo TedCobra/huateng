@@ -23,7 +23,7 @@ export default {
 			nav: [
 				{
 					label: '会员权益',
-					sub: '享受会员权益，更多优惠请联系店内服务人员',
+					sub: this.$store.state.merchantDetails.remark,
 					icon: 'crown_black',
 					className: 'orange'
 				},

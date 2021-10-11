@@ -41,6 +41,11 @@
 // plugins
 import { Dialog } from 'vant';
 import BScroll from '@better-scroll/core';
+import Pullup from '@better-scroll/pull-up';
+import Pulldown from '@better-scroll/pull-down';
+// 注册插件
+BScroll.use(Pullup);
+BScroll.use(Pulldown);
 // util
 import HttpService from '../utils/http.js';
 // import { limitNumber, verifyPhone } from '../utils/util.js';
@@ -64,8 +69,17 @@ export default {
 			// phoneNumber: ''
 		};
 	},
+	watch: {
+		dataArray() {
+			if (this.bs) this.bs.refresh();
+		}
+	},
 	mounted() {
-		if (this.isScroll) this.initBScroll();
+		if (this.isScroll) {
+			setTimeout(() => {
+				this.initBScroll();
+			}, 500);
+		}
 	},
 	beforeDestroy() {
 		if (this.bs) this.bs.destroy();
@@ -77,7 +91,25 @@ export default {
 			console.log('init scroll');
 			this.bs = new BScroll(this.$refs.listScroll, {
 				scrollY: true,
-				click: true
+				click: true,
+				probeType: 1,
+				pullDownRefresh: {
+					threshold: 50,
+					stop: 20
+				},
+				pullUpLoad: {
+					threshold: 50
+				}
+			});
+			this.bs.on('pullingDown', () => {
+				console.log('pullDownToRefresh');
+				this.$emit('pullDownToRefresh');
+				this.bs.finishPullDown();
+			});
+			this.bs.on('pullingUp', () => {
+				console.log('pullUpLoading');
+				this.$emit('pullUpLoading');
+				this.bs.finishPullUp();
 			});
 		},
 		useCoupon(couponid) {

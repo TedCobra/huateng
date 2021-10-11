@@ -8,22 +8,17 @@
 		</ul>
 
 		<!-- list -->
-		<List v-model="isLoad" :finised="isCompleted" @load="requestData">
-			<ListForCoupon :isScroll="false" :dataArray="couponList" />
-		</List>
+		<ListForCoupon :isScroll="true" :dataArray="couponList" @pullDownToRefresh="pullDownToRefresh" @pullUpLoading="pullUpLoading" />
 	</div>
 </template>
 
 <script>
 import ListForCoupon from '../../components/ListForCoupon.vue';
 import HttpService from '../../utils/http';
-// plugin
-import { List } from 'vant';
 
 export default {
 	components: {
-		ListForCoupon,
-		List
+		ListForCoupon
 	},
 	data() {
 		return {
@@ -37,47 +32,40 @@ export default {
 			],
 			currentPage: 1, // 当前页码
 			pageSize: 10, // 条数
-			totalRow: 0, // 总条数
-			isRequest: false, // 是否请求
-			isLoad: false, // 是否开始加载
 			isCompleted: false, // 是否加载完成
 			couponList: [] // 优惠券列表
 		};
+	},
+	created() {
+		this.requestData();
 	},
 	methods: {
 		exchangeChoice(status) {
 			this.choice = status;
 			this.currentPage = 1;
-			this.isRequest = false;
 			this.couponList = [];
 			this.requestData();
 		},
 		requestData() {
-			if ((!this.totalRow && !this.isRequest) || this.couponList.length < this.totalRow) {
-				HttpService.MemberCoupon(
-					this.$store.state.membershipCardDetails.guestid,
-					this.$store.state.merchantDetails.parent_id,
-					this.$store.state.membershipCardDetails.company_id,
-					[this.choice],
-					this.currentPage,
-					this.pageSize
-				).then((res) => {
-					// 判断是否有请求
-					if (!this.isRequest) this.isRequest = true;
-					// 处理数据
-					res.data.some((item) => {
-						this.couponList.push(item);
-					});
-					this.totalRow = res.total || 0;
-					this.currentPage += 1;
-					// 加载状态结束
-					this.isLoad = false;
-					this.isCompleted = true;
-				});
-				return;
-			}
-			this.isLoad = false;
-			this.isCompleted = true;
+			if (this.isCompleted) return;
+			HttpService.MemberCoupon(
+				this.$store.state.membershipCardDetails.guestid,
+				this.$store.state.merchantDetails.parent_id,
+				this.$store.state.membershipCardDetails.company_id,
+				[this.choice],
+				this.currentPage,
+				this.pageSize
+			).then((res) => {
+				this.currentPage++;
+				this.couponList = this.couponList.concat(res.data);
+				if (res.data.length < this.currentPage) this.isCompleted = true;
+			});
+		},
+		pullDownToRefresh() {
+			this.exchangeChoice(this.choice);
+		},
+		pullUpLoading() {
+			this.requestData();
 		}
 	}
 };
