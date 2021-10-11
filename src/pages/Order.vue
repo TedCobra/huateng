@@ -141,7 +141,7 @@ export default {
 	},
 	created() {
 		// 获取左边列表
-		HttpService.materialSort(5129, 2).then((res) => {
+		HttpService.materialSort(this.$store.state.membershipCardDetails.company_id, 2).then((res) => {
 			this.typeList = res.data;
 		});
 		// 获取热卖
@@ -175,7 +175,7 @@ export default {
 		},
 		// 搜索
 		searchEvent() {
-			HttpService.MaterialSearch(this.$store.state.companyId, this.searchValue).then((res) => {
+			HttpService.MaterialSearch(this.$store.state.membershipCardDetails.company_id, this.searchValue).then((res) => {
 				this.typeList = res;
 			});
 		},
@@ -191,7 +191,7 @@ export default {
 		// 获取购物车信息
 		getShopList() {
 			HttpService.Shoppingcart(
-				this.$store.state.companyId,
+				this.$store.state.membershipCardDetails.company_id,
 				this.$store.state.uniondid,
 				this.$store.state.membershipCardDetails.id,
 				this.$store.state.roomid,

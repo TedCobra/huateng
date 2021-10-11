@@ -5,8 +5,9 @@ import store from './store';
 
 // plugins
 import 'lib-flexible';
-import { Popup } from 'vant';
+import { Popup, Toast } from 'vant';
 Vue.use(Popup);
+Vue.use(Toast);
 
 // custom
 import './assets/styles/style.scss';

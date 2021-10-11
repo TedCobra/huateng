@@ -1,6 +1,5 @@
 <template>
 	<!-- 选择优惠券 -->
-
 	<div class="order-coupon-container">
 		<van-popup v-model="show" position="bottom" :close-on-click-overlay="false" @click-overlay="close">
 			<div class="coupon-title">

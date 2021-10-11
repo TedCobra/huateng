@@ -150,11 +150,15 @@ export default {
 			this.params.selectDate = yearMonthDay(this.params.selectDate);
 			this.numberOfPeople = Array.from(new Array(this.params.maxNumber).keys(), (x) => x + 1);
 			// 酒水套餐
-			HttpService.BookADrinkPlan(5129, this.params.selectRoomType, this.params.scheduledPlan, 1, this.params.selectDate).then(
-				(res) => {
-					this.drinkPackage = res.data;
-				}
-			);
+			HttpService.BookADrinkPlan(
+				this.$store.state.membershipCardDetails.company_id,
+				this.params.selectRoomType,
+				this.params.scheduledPlan,
+				1,
+				this.params.selectDate
+			).then((res) => {
+				this.drinkPackage = res.data;
+			});
 			return;
 		}
 		this.$router.go(-1);

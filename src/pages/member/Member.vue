@@ -103,6 +103,7 @@ export default {
 		};
 	},
 	created() {
+		console.log(this.$route.params.membershipCardDetails);
 		// 判断路由是否携带会员卡参数，储存对应数据
 		if (this.$route.params.membershipCardDetails) {
 			HttpService.MembershipCardDetails(
@@ -110,7 +111,8 @@ export default {
 				this.$route.params.membershipCardDetails.company_id,
 				this.$route.params.membershipCardDetails.id
 			).then((res) => {
-				this.$store.commit('updateMembershipCardDetails', res.data);
+				// 因为会员卡详情没有company_id
+				this.$store.commit('updateMembershipCardDetails', Object.assign(this.$route.params.membershipCardDetails, res.data));
 			});
 		}
 	},

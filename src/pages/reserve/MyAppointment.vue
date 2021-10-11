@@ -57,21 +57,25 @@ export default {
 	methods: {
 		requestData() {
 			if ((!this.totalRow && !this.isRequest) || this.appointmentList.length < this.totalRow) {
-				HttpService.MyAppointment(this.parentId, 5129, 'oqqkJ42kASZQAWWE3nbJuYk6wYp8', this.currentPage, this.pageSize).then(
-					(res) => {
-						// 判断是否有请求
-						if (!this.isRequest) this.isRequest = true;
-						// 处理数据
-						res.data.some((item) => {
-							this.appointmentList.push(item);
-						});
-						this.totalRow = res.total || 0;
-						this.currentPage += 1;
-						// 加载状态结束
-						this.isLoad = false;
-						this.isCompleted = true;
-					}
-				);
+				HttpService.MyAppointment(
+					this.parentId,
+					this.$store.state.membershipCardDetails.company_id,
+					'oqqkJ42kASZQAWWE3nbJuYk6wYp8',
+					this.currentPage,
+					this.pageSize
+				).then((res) => {
+					// 判断是否有请求
+					if (!this.isRequest) this.isRequest = true;
+					// 处理数据
+					res.data.some((item) => {
+						this.appointmentList.push(item);
+					});
+					this.totalRow = res.total || 0;
+					this.currentPage += 1;
+					// 加载状态结束
+					this.isLoad = false;
+					this.isCompleted = true;
+				});
 				return;
 			}
 			this.isLoad = false;

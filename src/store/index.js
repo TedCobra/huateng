@@ -5,16 +5,20 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
 	state: {
-		membershipCardDetails: {}, // 会员卡详情
-		companyId: '5129', // 商家id
 		uniondid: '1231', // 微信或者支付宝id
-		merchantDetails: {}, // 商家详情
-		acesstoken: '', // token,
 		openbarcheckoutid: '11724', // 桌号
 		roomid: '47', // 包厢id
+		guestId: '', // 会员标识
+		membershipCardDetails: {}, // 会员卡详情
+		merchantDetails: {}, // 商家详情
+		acesstoken: '', // token,
 		shopDetail: {} // 购物车信息
 	},
 	mutations: {
+		// 更新会员guestId
+		updateMemberGuestId(state, guestId) {
+			state.guestId = guestId;
+		},
 		// 更新会员卡详情
 		updateMembershipCardDetails(state, membershipCardDetails) {
 			state.membershipCardDetails = membershipCardDetails;

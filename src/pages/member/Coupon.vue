@@ -9,7 +9,7 @@
 
 		<!-- list -->
 		<List v-model="isLoad" :finised="isCompleted" @load="requestData">
-			<ListForCoupon :isScroll="true" :dataArray="couponList" />
+			<ListForCoupon :isScroll="false" :dataArray="couponList" />
 		</List>
 	</div>
 </template>
@@ -27,8 +27,9 @@ export default {
 	},
 	data() {
 		return {
-			choice: 1,
+			choice: 0,
 			choices: [
+				{ name: '未使用', status: 0 },
 				{ name: '已使用', status: 1 },
 				{ name: '已过期', status: 2 },
 				{ name: '占用中', status: 3 },
@@ -56,8 +57,7 @@ export default {
 				HttpService.MemberCoupon(
 					this.$store.state.membershipCardDetails.guestid,
 					this.$store.state.merchantDetails.parent_id,
-					this.$store.state.membershipCardDetails.company_id,
-					[this.choice],
+					this.$store.state.membershipCardDetails.company_id[this.choice],
 					this.currentPage,
 					this.pageSize
 				).then((res) => {

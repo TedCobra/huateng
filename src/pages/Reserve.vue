@@ -214,7 +214,7 @@ export default {
 		}
 	},
 	created() {
-		HttpService.AvailableRoomTypes(5129).then((res) => {
+		HttpService.AvailableRoomTypes(this.$store.state.membershipCardDetails.company_id).then((res) => {
 			this.availableRoomTypes = res.data;
 		});
 	},
@@ -228,16 +228,18 @@ export default {
 		getBuyoutPlan() {
 			if (this.orderParams.selectDate && this.orderParams.selectRoomType) {
 				let date = yearMonthDay(this.orderParams.selectDate);
-				HttpService.BuyoutPlan(5129, this.orderParams.selectRoomType, date).then((res) => {
-					console.log(res);
-					res.data.some((item) => {
-						let endHour = Number(item.endtime.split(':')[0]);
-						let beginHour = Number(item.begintime.split(':')[0]);
-						// 计算时间差
-						item.timeDiffrence = endHour > beginHour ? endHour - beginHour : 24 - beginHour + endHour;
-					});
-					this.buyoutPlans = res.data;
-				});
+				HttpService.BuyoutPlan(this.$store.state.membershipCardDetails.company_id, this.orderParams.selectRoomType, date).then(
+					(res) => {
+						console.log(res);
+						res.data.some((item) => {
+							let endHour = Number(item.endtime.split(':')[0]);
+							let beginHour = Number(item.begintime.split(':')[0]);
+							// 计算时间差
+							item.timeDiffrence = endHour > beginHour ? endHour - beginHour : 24 - beginHour + endHour;
+						});
+						this.buyoutPlans = res.data;
+					}
+				);
 			}
 		},
 		exchangeSelectRoomType(roomsortid, boxName, minNumber, maxNumber) {

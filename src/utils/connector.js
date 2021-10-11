@@ -1,4 +1,7 @@
 const Connector = {
+	// 判断是否是会员
+	IsMember: { describe: '会员判断', api: 'memberserverminiTest/WxCustomer/isMember' },
+
 	// 优惠券列表
 	CouponList: { describe: '优惠券列表', api: 'warehouseTest/CouponEvent/couponlist' },
 
@@ -55,6 +58,7 @@ const Connector = {
 
 	//订单详情
 	OrderGgetDdetail: { describe: '订单详情', api: 'onlinemarketTest/order/get_detail' },
+
 	// 会员分享奖励
 	MemberSharingRewards: { describe: '会员分享奖励', api: 'memberserverminiTest//Membersharerule/wechat_rulelist' },
 

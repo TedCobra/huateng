@@ -35,7 +35,7 @@ export default {
 		};
 	},
 	created() {
-		HttpService.UserTiedCardList('oqqkJ42kASZQAWWE3nbJuYk6wYp8', 5129).then((res) => {
+		HttpService.UserTiedCardList('oqqkJ42kASZQAWWE3nbJuYk6wYp8', this.$store.state.membershipCardDetails.company_id).then((res) => {
 			this.membershipCardList = res.data;
 		});
 	},

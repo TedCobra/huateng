@@ -61,7 +61,11 @@ export default {
 		}
 	},
 	created() {
-		HttpService.orderGgetDdetail(5129, this.searchParams.searchParams.rooid, this.searchParams.onlineorderno).then((res) => {
+		HttpService.orderGgetDdetail(
+			this.$store.state.membershipCardDetails.company_id,
+			this.searchParams.searchParams.rooid,
+			this.searchParams.onlineorderno
+		).then((res) => {
 			this.oderList = res.data;
 		});
 	},

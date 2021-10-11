@@ -58,7 +58,20 @@ const Post = (portDetails, params) => {
 // 接口
 const HttpService = {
 	/**
-	 *
+	 * 判断是否会员
+	 * @param {会员ID} openid
+	 * @param {商家编号} company_id
+	 * @returns
+	 */
+	IsMember: (openid, company_id) => {
+		return Post(Connector.IsMember, {
+			openid: openid,
+			company_id: company_id
+		});
+	},
+
+	/**
+	 * 优惠券列表（首页）
 	 * @param {商家编号 number} company_id
 	 * @param {活动编号 number} eventid
 	 * @returns
@@ -69,8 +82,9 @@ const HttpService = {
 			eventid: eventid
 		});
 	},
+
 	/**
-	 *
+	 * 优惠券详情
 	 * @param {会员ID} openid
 	 * @param {商家编号 number} company_id
 	 * @param {优惠券码} coupon_code
@@ -83,8 +97,9 @@ const HttpService = {
 			coupon_code: coupon_code
 		});
 	},
+
 	/**
-	 *
+	 * 优惠券列表（会员）
 	 * @param {会员ID} guestid
 	 * @param {品牌编号 number} parent_id
 	 * @param {商家编号 number} company_id
@@ -105,8 +120,24 @@ const HttpService = {
 			page_size: page_size
 		});
 	},
+
 	/**
-	 *
+	 * 领取优惠券
+	 * @param {会员ID} guestid
+	 * @param {品牌编号 number} parent_id
+	 * @param {优惠券编号 number} couponid
+	 * @returns
+	 */
+	GetACoupon: (guestid, parent_id, couponid) => {
+		return Post(Connector.GetCoupons, {
+			guestid: guestid,
+			parent_id: parent_id,
+			couponid: couponid
+		});
+	},
+
+	/**
+	 * 商家信息
 	 * @param {商家编号 number} company_id
 	 * @param {微信或支付宝对应用户id} uniondid
 	 * @returns
@@ -118,7 +149,7 @@ const HttpService = {
 		});
 	},
 	/**
-	 *
+	 * 会员卡详情
 	 * @param {微信或支付宝对应用户id} openid
 	 * @param {商家编号 number} company_id
 	 * @param {会员ID} customerid
@@ -131,8 +162,9 @@ const HttpService = {
 			customerid: customerid
 		});
 	},
+
 	/**
-	 *
+	 * 包厢类型
 	 * @param {商家编号 number} company_id
 	 * @returns
 	 */
@@ -141,8 +173,9 @@ const HttpService = {
 			company_id: company_id
 		});
 	},
+
 	/**
-	 *
+	 * 买断方案
 	 * @param {商家编号 number} company_id
 	 * @param {包厢类型 number} roomsortid
 	 * @param {预定时间 yyyy-mm-dd} reservationdate
@@ -155,8 +188,9 @@ const HttpService = {
 			reservationdate: reservationdate
 		});
 	},
+
 	/**
-	 *
+	 * 我的预约列表
 	 * @param {品牌编号 number} parent_id
 	 * @param {商家编号 number} company_id
 	 * @param {会员ID} openid
@@ -174,8 +208,9 @@ const HttpService = {
 			page_size: page_size
 		});
 	},
+
 	/**
-	 *
+	 * 酒水方案
 	 * @param {商家编号 number} company_id
 	 * @param {包厢类型 number} roomsortid
 	 * @param {预定方案 number} roomreservationid
@@ -192,6 +227,7 @@ const HttpService = {
 			reservationdate: reservationdate
 		});
 	},
+
 	/**
 	 *
 	 * @param {会员openId} openid
@@ -228,7 +264,7 @@ const HttpService = {
 	 * @param {分页，全部为-1，首页为0} page
 	 * @param {分页数量，默认为10} pagesize
 	 */
-	materialSearch: function (company_id = 5129, materialname, pricetypeid, roomsortid, areaid, guestid) {
+	materialSearch: function (company_id, materialname, pricetypeid, roomsortid, areaid, guestid) {
 		return Post(Connector.MaterialSearch, {
 			company_id: company_id,
 			materialname: materialname,
@@ -239,8 +275,12 @@ const HttpService = {
 		});
 	},
 
-	//获取热卖商品套餐
-	materialHot: function (company_id = 5129) {
+	/**
+	 * 获取热卖商品套餐
+	 * @param {公司Id} company_id
+	 * @returns
+	 */
+	materialHot: function (company_id) {
 		return Post(Connector.MaterialHot, {
 			company_id: company_id
 		});

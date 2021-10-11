@@ -80,7 +80,7 @@ export default {
 			let orderlist = [];
 			orderlist.push(item);
 			HttpService.Addtocart(
-				this.$store.state.companyId,
+				this.$store.state.membershipCardDetails.company_id,
 				this.$store.state.uniondid,
 				this.$store.state.membershipCardDetails.id,
 				this.$store.state.roomid,
@@ -92,7 +92,7 @@ export default {
 		// 删除
 		del(item) {
 			HttpService.Addtocart(
-				this.$store.state.companyId,
+				this.$store.state.membershipCardDetails.company_id,
 				this.$store.state.membershipCardDetails.id,
 				this.$store.state.roomid,
 				item.materialid,
