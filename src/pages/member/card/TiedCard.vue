@@ -10,6 +10,11 @@
 				@input="phoneNumber = limitNumber(phoneNumber)"
 			/>
 		</div>
+		<div class="common_input captcha">
+			<img class="captcha" src="../../../assets/images/captcha_grey.png" />
+			<input type="text" placeholder="请输入验证码" />
+			<button>获取验证码</button>
+		</div>
 		<button @click="tiedCard">确定</button>
 	</div>
 </template>

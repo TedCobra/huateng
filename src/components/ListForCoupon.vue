@@ -38,6 +38,8 @@
 </template>
 
 <script>
+import HttpService from '../utils/http.js';
+// import { limitNumber, verifyPhone } from '../utils/util.js';
 // plugins
 import { Dialog } from 'vant';
 import BScroll from '@better-scroll/core';
@@ -46,9 +48,6 @@ import Pulldown from '@better-scroll/pull-down';
 // 注册插件
 BScroll.use(Pullup);
 BScroll.use(Pulldown);
-// util
-import HttpService from '../utils/http.js';
-// import { limitNumber, verifyPhone } from '../utils/util.js';
 
 export default {
 	components: {

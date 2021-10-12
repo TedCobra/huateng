@@ -84,6 +84,19 @@ const HttpService = {
 	},
 
 	/**
+	 * 手机验证码
+	 * @param {商家编号} company_id
+	 * @param {手机号码} telephone
+	 * @returns
+	 */
+	PhoneVerificationCode: (company_id, telephone) => {
+		return Post(Connector.PhoneVerificationCode, {
+			company_id: company_id,
+			telephone: telephone
+		});
+	},
+
+	/**
 	 * 优惠券列表（首页）
 	 * @param {商家编号 number} company_id
 	 * @param {活动编号 number} eventid
@@ -161,6 +174,28 @@ const HttpService = {
 			uniondid: uniondid
 		});
 	},
+
+	/**
+	 * 我的奖励
+	 * @param {会员ID} openid
+	 * @param {商家编号} company_id
+	 * @param {会员卡编号} customerid
+	 * @param {类型 1建卡 2充值} type
+	 * @param {页码} page
+	 * @param {条数} page_size
+	 * @returns
+	 */
+	Reward: (openid, company_id, customerid, type, page, page_size) => {
+		return Post(Connector.Reward, {
+			openid: openid,
+			company_id: company_id,
+			customerid: customerid,
+			type: type,
+			page: page,
+			page_size: page_size
+		});
+	},
+
 	/**
 	 * 会员卡详情
 	 * @param {微信或支付宝对应用户id} openid

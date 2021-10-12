@@ -5,6 +5,9 @@ const Connector = {
 	// 系统时间
 	SystemTime: { describe: '系统时间', api: 'memberserverminiTest/WxCompany/server_time' },
 
+	// 手机验证码
+	PhoneVerificationCode: { describe: '手机验证码', api: 'memberserverTest/WxCompany/get_sms' },
+
 	// 优惠券列表
 	CouponList: { describe: '优惠券列表', api: 'warehouseTest/CouponEvent/couponlist' },
 
@@ -43,6 +46,9 @@ const Connector = {
 		describe: '会员卡详情',
 		api: 'memberserverminiTest/WxCustomer/detail'
 	},
+
+	// 我的奖励
+	Reward: { describe: '我的奖励', api: 'memberserverTest/WxCustomer/get_share_openid' },
 
 	// 会员卡选项列表
 	MembershipCardOptions: { describe: '会员卡选项列表', api: 'memberserverTest/WxMembergrade/list' },

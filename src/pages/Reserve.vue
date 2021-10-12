@@ -8,7 +8,7 @@
 				<div class="text_center">{{ distance }}km</div>
 			</div>
 			<div class="flex_row score">
-				<Rate v-model="score" allow-half :color="'#FF71AB'" :void-icon="'star'" :void-color="'#6A6C78'" />
+				<Rate v-model="score" allow-half :color="'#FF71AB'" :void-icon="'star'" :void-color="'#6A6C78'" :readonly="true" />
 				{{ score }}分
 			</div>
 			<div class="flex_row opening">

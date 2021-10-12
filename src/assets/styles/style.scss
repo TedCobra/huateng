@@ -1519,6 +1519,11 @@ body {
 		}
 	}
 	> .tied_card {
+		> .common_input {
+			&:not(:last-child) {
+				margin-bottom: 10px;
+			}
+		}
 		> button {
 			width: 100%;
 			height: 40px;

@@ -41,6 +41,7 @@ export default {
 	},
 	methods: {
 		exchangeChoice(status) {
+			this.isCompleted = false;
 			this.choice = status;
 			this.currentPage = 1;
 			this.couponList = [];
@@ -48,6 +49,7 @@ export default {
 		},
 		requestData() {
 			if (this.isCompleted) return;
+			this.$toast.loading('加载中', { duration: 0 });
 			HttpService.MemberCoupon(
 				this.$store.state.membershipCardDetails.guestid,
 				this.$store.state.merchantDetails.parent_id,
@@ -58,7 +60,8 @@ export default {
 			).then((res) => {
 				this.currentPage++;
 				this.couponList = this.couponList.concat(res.data);
-				if (res.data.length < this.currentPage) this.isCompleted = true;
+				this.$toast.clear();
+				if (res.data.length < this.pageSize) this.isCompleted = true;
 			});
 		},
 		pullDownToRefresh() {
