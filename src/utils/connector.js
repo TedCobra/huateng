@@ -6,7 +6,7 @@ const Connector = {
 	SystemTime: { describe: '系统时间', api: 'memberserverminiTest/WxCompany/server_time' },
 
 	// 手机验证码
-	PhoneVerificationCode: { describe: '手机验证码', api: 'memberserverTest/WxCompany/get_sms' },
+	PhoneVerificationCode: { describe: '手机验证码', api: 'memberserverminiTest/WxCompany/get_sms' },
 
 	// 优惠券列表
 	CouponList: { describe: '优惠券列表', api: 'warehouseTest/CouponEvent/couponlist' },
@@ -31,6 +31,9 @@ const Connector = {
 
 	// 预定酒水方案
 	BookADrinkPlan: { describe: '预定酒水方案', api: 'reserveServiceTest/mini/booking/chargingwineset' },
+
+	// 账单记录
+	BillingRecord: { describe: '账单记录', api: 'memberserverminiTest/WxCustomer/get_hyxfsj' },
 
 	// 用户绑卡列表
 	UserTiedCardList: { describe: '用户绑卡列表', api: 'memberserverminiTest/WxCustomer/list' },

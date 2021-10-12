@@ -2,7 +2,7 @@
 	<div class="small bill">
 		<!-- 列表 -->
 		<ul class="list">
-			<li v-for="item of 2" :key="item">
+			<li v-for="(item, index) of dataArray" :key="item.changevoucher">
 				<!-- 显示内容 -->
 				<div class="flex_row">
 					<div class="flex_row">
@@ -10,28 +10,26 @@
 							<img src="../../assets/images/price_white.png" />
 						</div>
 						<div>
-							<h4>消费 金卡</h4>
-							<p>2021-08-21 17:24:14</p>
+							<h4>{{ item.title }}</h4>
+							<p>{{ item.time }}</p>
 						</div>
 					</div>
-					<div @click="seleteData = item">
-						-100
-						<img :class="{ active: seleteData === item }" src="../../assets/images/arrow_grey.png" />
+					<div @click="fold(index)">
+						{{ item.bjje }}
+						<img :class="{ active: selectIndex === index }" src="../../assets/images/arrow_grey.png" />
 					</div>
 				</div>
 				<!-- 展开内容 -->
-				<ul :class="{ active: seleteData === item }">
-					<li>订单类型：消费</li>
-					<li>订单编号：V-XF201111111120</li>
-					<li>订单名称：消费 金卡</li>
-					<li>本金金额：0.00</li>
-					<li>赠送金额：-100.00</li>
+				<ul :class="{ active: selectIndex === index }">
+					<li v-for="(consume, consumeIndex) of item.detail" :key="consumeIndex">
+						{{ consume }}
+					</li>
 				</ul>
 			</li>
 		</ul>
 
 		<!-- 无数据 -->
-		<div v-show="array.length" class="no_more">
+		<div v-show="!dataArray.length" class="no_more">
 			<img src="../../assets/images/bill_no_more.png" />
 			<p>空空如也</p>
 		</div>
@@ -39,12 +37,37 @@
 </template>
 
 <script>
+import HttpService from '../../utils/http';
+
 export default {
 	data() {
 		return {
-			array: [],
-			seleteData: null
+			dataArray: [],
+			selectIndex: null,
+			currentPage: 1,
+			pageSize: 10
 		};
+	},
+	created() {
+		this.requestData();
+	},
+	methods: {
+		fold(index) {
+			this.selectIndex = index === this.selectIndex ? null : index;
+		},
+		requestData() {
+			this.$toast.loading('加载中', { duration: 0 });
+			HttpService.BillingRecord(
+				'oqqkJ42kASZQAWWE3nbJuYk6wYp8',
+				this.$store.state.membershipCardDetails.company_id,
+				this.$store.state.membershipCardDetails.id,
+				this.currentPage,
+				this.pageSize
+			).then((res) => {
+				this.dataArray = this.dataArray.concat(res.data);
+				this.$toast.clear();
+			});
+		}
 	}
 };
 </script>

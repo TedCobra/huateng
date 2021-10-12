@@ -2,8 +2,8 @@
 	<div class="small application_card">
 		<p class="title">会员卡</p>
 		<ul>
-			<li v-for="item of cardList" :key="item.id" class="flex_row" @click="selectCard = item.id">
-				<div :class="{ active: selectCard === item.id }">
+			<li v-for="(item, index) of cardList" :key="item.id" class="flex_row" @click="selectCard = index">
+				<div :class="{ active: selectCard === index }">
 					<img src="../../../assets/images/right_white.png" />
 				</div>
 				<div>
@@ -78,12 +78,12 @@ export default {
 			this.cardDetails = cardDetails;
 			this.isDetails = !this.isDetails;
 		},
-		jumpPage(routeName) {
-			this.$router.push({ name: routeName });
+		jumpPage(routeName, params) {
+			this.$router.push({ name: routeName, params: { cardDetails: params } });
 		},
 		confirmCard() {
-			if (!this.selectCard) return this.$toast.fail('请选择会员卡类型');
-			this.jumpPage('memberBuildCard');
+			if (!this.selectCard && this.selectCard !== 0) return this.$toast.fail('请选择会员卡类型');
+			this.jumpPage('memberBuildCard', this.cardList[this.selectCard]);
 		}
 	}
 };

@@ -53,7 +53,6 @@
 </template>
 <script>
 export default {
-	components: {},
 	props: {
 		show: {
 			type: Boolean,

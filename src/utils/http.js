@@ -423,19 +423,21 @@ const HttpService = {
 	 * @param {等级id number} gradeid
 	 * @param {性别 string 男/女} sex
 	 * @param {生日 yyyy-mm-dd} birthdate
+	 * @param {验证码} code
 	 * @param {?} shareguid
 	 * @returns
 	 */
-	MembershipCard: (company_id, openid, telephone, customername, gradeid, sex, birthdate, shareguid) => {
+	MembershipCard: (company_id, openid, gradeid, shareguid, telephone, customername, sex, birthdate, code) => {
 		return Post(Connector.MembershipCard, {
 			company_id: company_id,
 			openid: openid,
+			gradeid: gradeid,
+			shareguid: shareguid,
 			telephone: telephone,
 			customername: customername,
-			gradeid: gradeid,
 			sex: sex,
 			birthdate: birthdate,
-			shareguid: shareguid
+			code: code
 		});
 	},
 
@@ -446,16 +448,36 @@ const HttpService = {
 	 * @param {手机号码} telephone
 	 * @param {内部会员ID} customerid
 	 * @param {验证码} code
+	 * @param {已废弃} form_id
 	 * @returns
 	 */
-	BindPhysicalCard: (openid, company_id, telephone, customerid, code) => {
+	BindPhysicalCard: (openid, company_id, customerid, telephone, code) => {
 		return Post(Connector.BindPhysicalCard, {
 			openid: openid,
 			company_id: company_id,
-			telephone: telephone,
 			customerid: customerid,
+			telephone: telephone,
 			code: code,
-			form_id: ''
+			form_id: '123'
+		});
+	},
+
+	/**
+	 * 账单记录
+	 * @param {会员ID} openid
+	 * @param {商家编号} company_id
+	 * @param {会员卡ID} customerid
+	 * @param {页码} page
+	 * @param {条数} page_size
+	 * @returns
+	 */
+	BillingRecord: (openid, company_id, customerid, page, page_size) => {
+		return Post(Connector.BillingRecord, {
+			openid: openid,
+			company_id: company_id,
+			customerid: customerid,
+			page: page,
+			page_size: page_size
 		});
 	},
 
