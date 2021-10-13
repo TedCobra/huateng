@@ -70,15 +70,18 @@ export default {
 	},
 	watch: {
 		dataArray() {
-			if (this.bs) this.bs.refresh();
+			if (this.bs) {
+				this.$nextTick(() => {
+					console.log('is change data array?');
+					this.bs.refresh();
+					this.bs.finishPullDown();
+					this.bs.finishPullUp();
+				});
+			}
 		}
 	},
 	mounted() {
-		if (this.isScroll) {
-			setTimeout(() => {
-				this.initBScroll();
-			}, 500);
-		}
+		this.initBScroll();
 	},
 	beforeDestroy() {
 		if (this.bs) this.bs.destroy();
@@ -101,14 +104,10 @@ export default {
 				}
 			});
 			this.bs.on('pullingDown', () => {
-				console.log('pullDownToRefresh');
 				this.$emit('pullDownToRefresh');
-				this.bs.finishPullDown();
 			});
 			this.bs.on('pullingUp', () => {
-				console.log('pullUpLoading');
 				this.$emit('pullUpLoading');
-				this.bs.finishPullUp();
 			});
 		},
 		useCoupon(couponid) {

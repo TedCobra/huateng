@@ -425,6 +425,7 @@ const HttpService = {
 	 * @param {生日 yyyy-mm-dd} birthdate
 	 * @param {验证码} code
 	 * @param {?} shareguid
+	 * @param {已废弃} form_id
 	 * @returns
 	 */
 	MembershipCard: (company_id, openid, gradeid, shareguid, telephone, customername, sex, birthdate, code) => {
@@ -437,7 +438,8 @@ const HttpService = {
 			customername: customername,
 			sex: sex,
 			birthdate: birthdate,
-			code: code
+			code: code,
+			form_id: '123'
 		});
 	},
 
